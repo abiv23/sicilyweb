@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { SicilyImageComponent } from '../../components/sicily-image/sicily-image.component';
 
 interface LearningResource {
   icon: string;
@@ -15,7 +16,7 @@ interface LearningResource {
 @Component({
   selector: 'app-language',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, SicilyImageComponent],
   template: `
     <div class="min-h-screen bg-dark-bg py-8">
       <div class="container mx-auto px-6 max-w-6xl">
@@ -99,16 +100,35 @@ interface LearningResource {
           }
         </div>
 
-        <mat-card class="p-8 bg-sicilian-sunset/30 border border-sicilian-sunset/50 mb-8 shadow-xl text-dark-text">
-          <h3 class="text-2xl font-bold mb-4 text-sicilian-sunset">🏝️ Sicily-Specific Tips</h3>
-          <p class="text-dark-text-secondary leading-relaxed mb-4">
-            Sicilians speak with a distinct accent and use some local dialect words, but standard Italian will serve you perfectly. 
-            They're incredibly warm people who'll be patient with your learning efforts!
-          </p>
-          <p class="text-dark-text-secondary leading-relaxed">
-            <strong class="text-sicilian-sunset">Cultural note:</strong> Sicilians especially appreciate when visitors make an effort to speak Italian, 
-            even just basic phrases. Your attempts will be met with smiles and encouragement.
-          </p>
+        <!-- Sicily-specific tips with cafe image -->
+        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-bold mb-4 text-sicilian-sunset">🏝️ Sicily-Specific Cultural Tips</h3>
+              <p class="text-dark-text-secondary leading-relaxed mb-4">
+                Sicilians speak with a distinct accent and use some local dialect words, but standard Italian will serve you perfectly. 
+                They're incredibly warm people who'll be patient with your learning efforts!
+              </p>
+              <p class="text-dark-text-secondary leading-relaxed mb-4">
+                <strong class="text-sicilian-sunset">Cultural note:</strong> Sicilians especially appreciate when visitors make an effort to speak Italian, 
+                even just basic phrases. Your attempts will be met with smiles and encouragement.
+              </p>
+              <div class="bg-sicilian-sunset/20 p-4 rounded-lg border border-sicilian-sunset/50">
+                <p class="text-dark-text-secondary">
+                  <strong class="text-sicilian-sunset">Pro tip:</strong> Learn food vocabulary first - you'll use it constantly 
+                  at markets, cafés, and restaurants throughout Sicily!
+                </p>
+              </div>
+            </div>
+            <div>
+              <app-sicily-image 
+                imageName="cafe.jpg"
+                alt="Traditional Sicilian Café Culture"
+                containerClass="h-80 rounded-xl shadow-lg"
+                imageClass="h-full w-full object-cover">
+              </app-sicily-image>
+            </div>
+          </div>
         </mat-card>
 
         <h2 class="text-3xl font-bold mb-8 text-dark-text border-l-4 border-sicilian-sunset pl-4">📅 Your 1.5-Year Learning Timeline</h2>
@@ -134,16 +154,30 @@ interface LearningResource {
           </div>
         </mat-card>
 
-        <mat-card class="p-8 bg-sicilian-gradient text-white shadow-xl text-center">
-          <h3 class="text-3xl font-bold mb-4">🚀 Ready to Start Your Italian Journey?</h3>
-          <p class="text-lg leading-relaxed mb-6">
-            With 1.5 years ahead of you, you have plenty of time to build a solid foundation. Even learning just the basics 
-            will make your Sicily trip incredibly more enjoyable and help you connect with locals!
-          </p>
-          <div class="backdrop-blur-sm bg-white/20 p-4 rounded-xl inline-block">
-            <p class="text-lg font-semibold">
-              <strong>💡 Pro tip:</strong> Start with greetings and food vocabulary – you'll use these constantly in Sicily!
-            </p>
+        <!-- Final motivation section with cataniaOpera image -->
+        <mat-card class="p-8 bg-sicilian-gradient text-white shadow-xl">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-3xl font-bold mb-4">🚀 Ready to Start Your Italian Journey?</h3>
+              <p class="text-lg leading-relaxed mb-6">
+                With 1.5 years ahead of you, you have plenty of time to build a solid foundation. Even learning just the basics 
+                will make your Sicily trip incredibly more enjoyable and help you connect with locals!
+              </p>
+              <div class="backdrop-blur-sm bg-white/20 p-4 rounded-xl">
+                <p class="text-lg font-semibold">
+                  <strong>💡 Pro tip:</strong> Start with greetings and food vocabulary – you'll use these constantly in Sicily!
+                </p>
+              </div>
+            </div>
+            <div>
+              <app-sicily-image 
+                imageName="cataniaOpera.jpg"
+                alt="Teatro Massimo Opera House"
+                containerClass="h-80 rounded-xl shadow-2xl"
+                imageClass="h-full w-full object-cover"
+                [enableHover]="false">
+              </app-sicily-image>
+            </div>
           </div>
         </mat-card>
       </div>

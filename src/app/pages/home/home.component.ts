@@ -149,12 +149,12 @@ export class HomeComponent {
   // Sicily destinations data for the gallery
   destinations = [
     {
-      image: 'https://images.unsplash.com/photo-1610056494052-6a4f569a3476?w=600&q=80',
+      image: '/images/etna.jpg',
       title: 'Mount Etna',
       description: 'Europe\'s highest active volcano with volcanic wines and lunar landscapes'
     },
     {
-      image: 'https://images.unsplash.com/photo-1624969862293-84d619f7c46c?w=600&q=80',
+      image: '/images/taormina_theater.jpg',
       title: 'Taormina Theater',
       description: 'Ancient amphitheater with stunning views over the Ionian Sea'
     },
@@ -238,11 +238,11 @@ export class HomeComponent {
 
   // Hero section data
   heroData = {
-    backgroundImage: 'https://images.unsplash.com/photo-1594136789908-8d05ebfa88f2?w=1920&q=80',
+    backgroundImage: '/images/mountain_village.jpg',
     title: 'Sicily Family Adventure',
     subtitle: 'September 1-11, 2026 • An unforgettable journey through Sicily\'s ancient wonders',
-    imageTitle: 'Valley of the Temples',
-    imageDescription: 'Ancient Greek temples in Agrigento, one of the world\'s largest archaeological sites dating to 581 BC'
+    imageTitle: 'Mountain Village in Sicily',
+    imageDescription: 'ToDo: look up where this is'
   };
 
   constructor() {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { SicilyImageComponent } from '../../components/sicily-image/sicily-image.component';
 
 interface ItineraryDay {
   day: string;
@@ -17,15 +18,17 @@ interface ItineraryDay {
 @Component({
   selector: 'app-planning',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, SicilyImageComponent],
   template: `
     <div class="min-h-screen bg-dark-bg py-8">
       <div class="container mx-auto px-6 max-w-6xl">
+        <!-- Hero Section -->
         <div class="bg-hero-gradient text-white p-12 rounded-2xl text-center mb-8 shadow-2xl">
           <h1 class="text-5xl font-bold mb-4">🇮🇹 Sicily Family Adventure</h1>
           <div class="text-xl opacity-90">September 1-11, 2026 • 5-6 Adults • Budget: ~$7,000 per person</div>
         </div>
 
+        <!-- Travel Overview -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
           <h2 class="text-3xl font-bold mb-6 text-dark-text">🏛️ Travel Overview</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -42,6 +45,7 @@ interface ItineraryDay {
           </div>
         </mat-card>
 
+        <!-- Flight Information -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
           <h2 class="text-3xl font-bold mb-6 text-dark-text">✈️ Flight Information</h2>
           <div class="bg-dark-elevated p-6 rounded-xl mb-6 border border-dark-border">
@@ -71,32 +75,123 @@ interface ItineraryDay {
           </div>
         </mat-card>
 
+        <!-- Transportation & Catania -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-3xl font-bold mb-6 text-dark-text">🚗 Transportation & Logistics</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">🚗 Transportation & First Stop: Catania</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 class="text-xl font-bold mb-4 text-sicilian-sea">Car Rentals</h3>
+              <app-sicily-image 
+                imageName="catania.jpg"
+                alt="Catania Cathedral and Architecture"
+                containerClass="h-64 rounded-xl shadow-lg"
+                imageClass="h-full w-full object-cover">
+              </app-sicily-image>
+            </div>
+            <div class="space-y-4">
+              <h3 class="text-xl font-bold text-sicilian-sea">Car Rentals & Logistics</h3>
               <ul class="space-y-2 text-dark-text-secondary">
                 <li><strong class="text-dark-text">Group Size:</strong> 2 vehicles for 6 adults</li>
                 <li><strong class="text-dark-text">Vehicle Type:</strong> Mid-size SUVs or similar</li>
                 <li><strong class="text-dark-text">Pick-up:</strong> Catania Airport</li>
                 <li><strong class="text-dark-text">Insurance:</strong> Full coverage recommended</li>
               </ul>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold mb-4 text-italian-red-light">Accommodation Strategy</h3>
-              <ul class="space-y-2 text-dark-text-secondary">
-                <li><strong class="text-dark-text">Base Locations:</strong> 2-3 central hotels</li>
-                <li><strong class="text-dark-text">Rating:</strong> 4-star minimum</li>
-                <li><strong class="text-dark-text">Accessibility:</strong> Senior-friendly features</li>
-                <li><strong class="text-dark-text">Beach Resort:</strong> 2-3 nights by the coast</li>
-              </ul>
+              <p class="text-dark-text-secondary text-sm">
+                Catania's baroque architecture, rebuilt after Mount Etna's eruptions, 
+                provides a stunning introduction to Sicily's resilient spirit.
+              </p>
             </div>
           </div>
         </mat-card>
 
+        <!-- Key Itinerary Highlights -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-3xl font-bold mb-6 text-dark-text">🗺️ Detailed Itinerary</h2>
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">🗺️ Key Itinerary Highlights</h2>
+          
+          <!-- Agrigento section -->
+          <div class="mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-sicilian-gold">Day 4-5: Valley of the Temples</h3>
+                <p class="text-dark-text-secondary">
+                  Explore the world's largest archaeological site with 8 Greek temples dating to 581 BC. 
+                  This UNESCO World Heritage site showcases some of the best-preserved ancient Greek 
+                  architecture outside of Greece.
+                </p>
+                <ul class="list-disc pl-5 text-dark-text-secondary space-y-1">
+                  <li>2-hour guided tours available ($52 pp with AAA)</li>
+                  <li>Early morning visits to avoid crowds</li>
+                  <li>Sunset photography opportunities</li>
+                </ul>
+              </div>
+              <div>
+                <app-sicily-image 
+                  imageName="agrigento_ruins.jpg"
+                  alt="Valley of the Temples Ancient Ruins"
+                  containerClass="h-64 rounded-xl shadow-lg"
+                  imageClass="h-full w-full object-cover">
+                </app-sicily-image>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mount Etna section -->
+          <div class="mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <app-sicily-image 
+                  imageName="etna.jpg"
+                  alt="Mount Etna Volcanic Landscape"
+                  containerClass="h-64 rounded-xl shadow-lg"
+                  imageClass="h-full w-full object-cover">
+                </app-sicily-image>
+              </div>
+              <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-sicilian-sunset">Day 9: Mount Etna Adventure</h3>
+                <p class="text-dark-text-secondary">
+                  Europe's highest active volcano offers breathtaking lunar landscapes and unique 
+                  volcanic soil wines. Visit Rifugio Sapienza, take cable cars to higher elevations, 
+                  and explore lava flows with 4x4 jeep tours.
+                </p>
+                <ul class="list-disc pl-5 text-dark-text-secondary space-y-1">
+                  <li>Oro d'Etna winery tasting on volcano slopes</li>
+                  <li>Hiking trails in Etna National Park</li>
+                  <li>Volcanic cave exploration opportunities</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Syracuse section -->
+          <div class="mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-sicilian-sea">Day 3: Syracuse & Ortigia</h3>
+                <p class="text-dark-text-secondary">
+                  Discover the birthplace of Archimedes with its Roman amphitheater, Ear of Dionysius, 
+                  and the baroque island of Ortigia. This UNESCO site combines ancient Greek and Roman 
+                  history with stunning waterfront architecture.
+                </p>
+                <ul class="list-disc pl-5 text-dark-text-secondary space-y-1">
+                  <li>Archaeological park with Greek theater</li>
+                  <li>Ortigia island's medieval streets</li>
+                  <li>Traditional granita & brioche breakfast</li>
+                </ul>
+              </div>
+              <div>
+                <app-sicily-image 
+                  imageName="ruins2.jpg"
+                  alt="Syracuse Ancient Ruins"
+                  containerClass="h-64 rounded-xl shadow-lg"
+                  imageClass="h-full w-full object-cover">
+                </app-sicily-image>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+
+        <!-- Complete Itinerary -->
+        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">📅 Complete Day-by-Day Itinerary</h2>
           <div class="space-y-6">
             @for (day of itineraryDays; track day.day) {
               <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border backdrop-blur-sm">
@@ -117,22 +212,6 @@ interface ItineraryDay {
                     </ul>
                   </div>
                 }
-                @if (day.hotel) {
-                  <div class="bg-italian-green/20 p-4 rounded-lg mb-3">
-                    <strong class="text-italian-green-light">{{ day.hotel.name }}</strong>
-                    <ul class="list-disc pl-5 text-dark-text-secondary">
-                      @for (option of day.hotel.options; track option) {
-                        <li>{{ option }}</li>
-                      }
-                    </ul>
-                  </div>
-                }
-                @if (day.restaurant) {
-                  <div class="bg-sicilian-sunset/20 p-4 rounded-lg mb-3">
-                    <strong class="text-sicilian-sunset">{{ day.restaurant.title }}</strong>
-                    <p class="text-dark-text-secondary">{{ day.restaurant.details }}</p>
-                  </div>
-                }
                 @if (day.luxuryActivities) {
                   <div class="bg-sicilian-wine/20 p-4 rounded-lg mb-3">
                     <strong class="text-italian-red-light">{{ day.luxuryActivities.title }}</strong>
@@ -143,44 +222,126 @@ interface ItineraryDay {
                     </ul>
                   </div>
                 }
-                @if (day.tips) {
-                  <div class="bg-sicilian-gold/20 p-4 rounded-lg">
-                    <strong class="text-sicilian-gold">Tips:</strong>
-                    <p class="text-dark-text-secondary">{{ day.tips }}</p>
-                  </div>
-                }
               </div>
             }
           </div>
         </mat-card>
 
-        <!-- Preview of coming attractions -->
-        <mat-card class="p-8 bg-sicilian-gradient text-white shadow-xl text-center">
-          <h3 class="text-3xl font-bold mb-4">🏛️ Complete Detailed Itinerary</h3>
-          <p class="text-white/90 mb-6 text-lg leading-relaxed">
-            Explore daily schedules, restaurant recommendations, museum booking details, and luxury experiences throughout Sicily.
-          </p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div class="backdrop-blur-sm bg-white/10 p-6 rounded-xl">
-              <span class="text-4xl mb-3 block">🏛️</span>
-              <h4 class="font-bold text-white mb-2">UNESCO Sites</h4>
-              <p class="text-white/80 text-sm">Valley of Temples, Mount Etna, Syracuse, Noto & more</p>
+        <!-- Accommodation Strategy -->
+        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">🏨 Accommodation Strategy</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4 text-sicilian-sea">Hotel Selection Criteria</h3>
+              <ul class="space-y-3 text-dark-text-secondary">
+                <li><strong class="text-dark-text">Rating:</strong> 4-star minimum for comfort</li>
+                <li><strong class="text-dark-text">Location:</strong> Central, walkable to main attractions</li>
+                <li><strong class="text-dark-text">Accessibility:</strong> Senior-friendly features</li>
+                <li><strong class="text-dark-text">Amenities:</strong> Free breakfast, air conditioning, WiFi</li>
+              </ul>
             </div>
-            <div class="backdrop-blur-sm bg-white/10 p-6 rounded-xl">
-              <span class="text-4xl mb-3 block">🍷</span>
-              <h4 class="font-bold text-white mb-2">Culinary Experiences</h4>
-              <p class="text-white/80 text-sm">Wine tastings, cooking classes, local food tours</p>
-            </div>
-            <div class="backdrop-blur-sm bg-white/10 p-6 rounded-xl">
-              <span class="text-4xl mb-3 block">🏨</span>
-              <h4 class="font-bold text-white mb-2">Premium Accommodations</h4>
-              <p class="text-white/80 text-sm">4-5 star hotels, boutique properties, beach resorts</p>
+            <div>
+              <h3 class="text-xl font-bold mb-4 text-italian-red-light">Base Locations</h3>
+              <ul class="space-y-3 text-dark-text-secondary">
+                <li><strong class="text-dark-text">Syracuse (2 nights):</strong> Ancient sites and Ortigia</li>
+                <li><strong class="text-dark-text">Agrigento (2 nights):</strong> Valley of Temples</li>
+                <li><strong class="text-dark-text">Palermo (2 nights):</strong> Capital city culture</li>
+                <li><strong class="text-dark-text">Taormina (3 nights):</strong> Mount Etna and theater</li>
+              </ul>
             </div>
           </div>
-          <div class="backdrop-blur-sm bg-white/10 p-6 rounded-xl inline-block">
-            <p class="text-lg font-semibold text-white">
-              <strong class="text-sicilian-gold">✅ Now Available:</strong> Full daily schedules with times, locations, and booking information!
+        </mat-card>
+
+        <!-- Budget Breakdown -->
+        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">💰 Budget Breakdown</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-sicilian-sea/30 p-6 rounded-xl border border-sicilian-sea/50">
+              <h4 class="font-bold text-sicilian-sea mb-2">Accommodations</h4>
+              <p class="text-2xl font-bold text-dark-text mb-1">$2,800</p>
+              <p class="text-dark-text-secondary text-sm">4-star hotels, 9 nights</p>
+            </div>
+            <div class="bg-italian-green/30 p-6 rounded-xl border border-italian-green/50">
+              <h4 class="font-bold text-italian-green-light mb-2">Transportation</h4>
+              <p class="text-2xl font-bold text-dark-text mb-1">$1,200</p>
+              <p class="text-dark-text-secondary text-sm">Car rental, gas, insurance</p>
+            </div>
+            <div class="bg-sicilian-wine/30 p-6 rounded-xl border border-sicilian-wine/50">
+              <h4 class="font-bold text-italian-red-light mb-2">Food & Dining</h4>
+              <p class="text-2xl font-bold text-dark-text mb-1">$2,000</p>
+              <p class="text-dark-text-secondary text-sm">Restaurants and experiences</p>
+            </div>
+            <div class="bg-sicilian-sunset/30 p-6 rounded-xl border border-sicilian-sunset/50">
+              <h4 class="font-bold text-sicilian-sunset mb-2">Activities & Tours</h4>
+              <p class="text-2xl font-bold text-dark-text mb-1">$1,000</p>
+              <p class="text-dark-text-secondary text-sm">Museums, tours, experiences</p>
+            </div>
+          </div>
+          <div class="mt-6 p-4 bg-sicilian-gold/20 rounded-lg border border-sicilian-gold/50">
+            <p class="text-dark-text text-center">
+              <strong class="text-sicilian-gold">Total per person: ~$7,000</strong> 
+              <span class="text-dark-text-secondary">(excluding airfare)</span>
             </p>
+          </div>
+        </mat-card>
+
+        <!-- Booking Timeline -->
+        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">📋 Booking Timeline & Tips</h2>
+          <div class="space-y-6">
+            <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border">
+              <h3 class="text-xl font-bold mb-4 text-sicilian-sea">12 Months Before (September 2025)</h3>
+              <ul class="space-y-2 text-dark-text-secondary">
+                <li>✈️ Book flights - best prices and seat selection</li>
+                <li>🏨 Reserve hotels in Syracuse and Taormina</li>
+                <li>🎭 Check for special events in September 2026</li>
+              </ul>
+            </div>
+            
+            <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border">
+              <h3 class="text-xl font-bold mb-4 text-italian-green-light">6 Months Before (March 2026)</h3>
+              <ul class="space-y-2 text-dark-text-secondary">
+                <li>🚗 Book rental cars for 6-person group</li>
+                <li>🎫 Pre-book Valley of Temples, Mount Etna tours</li>
+                <li>🍷 Reserve cooking classes and wine tastings</li>
+              </ul>
+            </div>
+            
+            <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border">
+              <h3 class="text-xl font-bold mb-4 text-sicilian-sunset">1 Month Before (August 2026)</h3>
+              <ul class="space-y-2 text-dark-text-secondary">
+                <li>📄 Confirm all reservations</li>
+                <li>💳 Notify banks of travel plans</li>
+                <li>🧳 Pack comfortable walking shoes</li>
+              </ul>
+            </div>
+          </div>
+        </mat-card>
+
+        <!-- Final Preview -->
+        <mat-card class="p-8 bg-sicilian-gradient text-white shadow-xl">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-3xl font-bold mb-4">🏛️ Complete Sicily Experience</h3>
+              <p class="text-white/90 mb-6 text-lg leading-relaxed">
+                From UNESCO World Heritage sites to volcanic wines, your Sicily adventure includes 
+                detailed daily schedules and luxury experiences.
+              </p>
+              <div class="backdrop-blur-sm bg-white/10 p-4 rounded-xl">
+                <p class="text-lg font-semibold text-white">
+                  <strong class="text-sicilian-gold">✅ Ready:</strong> Complete planning guide for your Sicily adventure!
+                </p>
+              </div>
+            </div>
+            <div>
+              <app-sicily-image 
+                imageName="seaside.jpg"
+                alt="Sicilian Coastal Views"
+                containerClass="h-80 rounded-xl shadow-2xl"
+                imageClass="h-full w-full object-cover"
+                [enableHover]="false">
+              </app-sicily-image>
+            </div>
           </div>
         </mat-card>
       </div>
@@ -195,7 +356,6 @@ interface ItineraryDay {
       color: inherit !important;
     }
     
-    /* Add glassmorphism effects */
     .backdrop-blur-sm {
       backdrop-filter: blur(8px);
     }
@@ -216,15 +376,7 @@ export class PlanningComponent {
           title: 'Evening',
           details: ['Check into hotel, light dinner, rest and adjust to time zone']
         }
-      ],
-      hotel: {
-        name: 'Syracuse Hotel Options',
-        options: [
-          'Grande Albergo Alfeo - 4-star, centrally located, free breakfast',
-          'Grand Hotel Villa Politi - 4-star, old world charm, free breakfast',
-          'Hotel Borgo Pantano - 4-star, countryside setting (7 miles from center)'
-        ]
-      }
+      ]
     },
     {
       day: 'Day 3',
@@ -232,290 +384,77 @@ export class PlanningComponent {
       activities: [
         {
           title: 'Morning',
-          details: ['Traditional Sicilian breakfast at Café Voglia Matta - granita and brioche']
+          details: ['Traditional Sicilian breakfast - granita and brioche']
         },
         {
-          title: 'Mid-Morning',
-          details: ['Visit the Roman amphitheater and Ear of Dionysius archaeological park']
+          title: 'Archaeological Park',
+          details: ['Visit Roman amphitheater and Ear of Dionysius']
         },
         {
-          title: 'Afternoon',
-          details: ['Cross to Ortigia island - explore bustling piazzas, baroque architecture, and waterfront']
+          title: 'Ortigia Island',
+          details: ['Explore baroque architecture and waterfront']
         }
       ],
-      restaurant: {
-        title: 'Recommended Walking Tours',
-        details: 'Syracuse offers excellent guided tours of the archaeological park and Ortigia\'s historic center. Book through local tour operators for small group experiences.'
-      },
       luxuryActivities: {
-        title: 'Additional Luxury Activities to Consider',
+        title: 'Luxury Options',
         items: [
-          'Private Baron\'s Palazzo Experience - Exclusive lunch at a historic palazzo with wine tasting from family vineyard (Tauck exclusive style)',
-          'Sunset Sailing - Private boat charter around Ortigia island with aperitivo',
-          'After-Hours Museum Visit - Private guided tour of Paolo Orsi Archaeological Museum',
-          'Papyrus Workshop - Learn ancient paper-making techniques at the Papyrus Museum',
-          'Local Artisan Visits - Meet ceramic artists and traditional craftspeople in their workshops'
+          'Private Baron\'s Palazzo Experience with wine tasting',
+          'Sunset sailing around Ortigia island'
         ]
       }
     },
     {
       day: 'Day 4',
-      location: 'Noto → Ragusa Ibla → Piazza Armerina → Agrigento',
-      drivingDistance: 'Syracuse to Noto: 50 min | Noto to Ragusa: 50 min | Ragusa to Piazza Armerina: 1h 40min | Piazza Armerina to Agrigento: 1h 40min',
+      location: 'Noto → Ragusa → Piazza Armerina → Agrigento',
+      drivingDistance: 'Total driving: ~5 hours with stops',
       activities: [
         {
-          title: 'Early Morning Noto (UNESCO Site)',
+          title: 'UNESCO Sites Tour',
           details: [
-            'Breakfast at 124-year-old Caffè Sicilia - famous granita and gelato with brioche',
-            'Walk Corso Vittorio Emanuele promenade',
-            'Admire baroque architecture and almond orchards'
+            'Noto baroque architecture',
+            'Ragusa Ibla medieval lanes',
+            'Villa Romana del Casale mosaics'
           ]
-        },
-        {
-          title: 'Late Morning Ragusa Ibla (UNESCO Site)',
-          details: [
-            'Explore ancient labyrinthine lanes',
-            'Visit main town Piazza',
-            'Optional lunch break'
-          ]
-        },
-        {
-          title: 'Afternoon Piazza Armerina (UNESCO Site)',
-          details: [
-            'Villa Romana del Casale - world\'s most beautiful preserved mosaics',
-            'Famous "Bikini Girls" mosaics',
-            '2-hour guided tour recommended ($52 pp with AAA, $16 regular)'
-          ]
-        },
-        {
-          title: 'Evening',
-          details: ['Arrive in Agrigento, dinner and overnight']
         }
       ]
     },
     {
       day: 'Day 5',
-      location: 'Agrigento - Valley of the Temples & Beach Day',
+      location: 'Valley of the Temples',
       activities: [
         {
-          title: 'Morning',
-          details: ['Valley of the Temples (UNESCO Site) - 8 Greek temples dating to 581 BC, one of the world\'s largest archaeological sites']
-        },
-        {
-          title: 'Afternoon',
-          details: ['Beach relaxation - consider staying at luxury Verdura Resort for beach access']
-        }
-      ],
-      hotel: {
-        name: 'Agrigento Beach Hotels',
-        options: [
-          'Verdura Resort - 5-star luxury coastal resort (splurge option)',
-          'Baia di Ulisse - 4-star, near coast'
-        ]
-      },
-      restaurant: {
-        title: 'Wine Opportunity',
-        details: 'This region produces excellent wines from volcanic soil. Look for Nero d\'Avola and Frappato varietals.'
-      },
-      luxuryActivities: {
-        title: 'Additional Luxury Activities to Consider',
-        items: [
-          'Private Vineyard Experience - Exclusive tasting at Planeta or other premium wineries with lunch',
-          'Helicopter Tour - Aerial views of Valley of Temples and coastline',
-          'Exclusive Temple Access - Early morning private visit before crowds',
-          'Local Olive Oil Tasting - Visit family-run olive groves and learn traditional pressing methods',
-          'Sunset Photography Workshop - Capture golden hour at the temples with professional guidance',
-          'Private Beach Club - VIP access to exclusive coastal resorts'
-        ]
-      }
-    },
-    {
-      day: 'Day 6',
-      location: 'Agrigento → Palermo',
-      drivingDistance: 'Agrigento to Palermo: 2 hours',
-      activities: [
-        {
-          title: 'Morning',
-          details: ['Early departure to Palermo']
-        },
-        {
-          title: 'Afternoon/Evening Palermo Highlights',
-          details: [
-            'UNESCO Palatine Chapel',
-            'Teatro Massimo (largest opera house in Italy, Godfather Part III filming location)',
-            'Ballarò Market - chaotic 1,000-year-old institution',
-            'Famous street food scene'
-          ]
-        }
-      ],
-      hotel: {
-        name: 'Palermo Hotel',
-        options: ['Centrale Palace Hotel - Excellent central location, 4-star']
-      },
-      restaurant: {
-        title: 'Must-Try Foods',
-        details: 'Arancini (invented in Sicily), Pasta alla Norma (eggplant pasta), street food at markets. Evening food tours highly recommended.'
-      },
-      luxuryActivities: {
-        title: 'Additional Luxury Activities to Consider',
-        items: [
-          'Private Palazzo Visit - Exclusive art tour at baroness\'s villa with dinner (Tauck-style exclusive)',
-          'Teatro Massimo Private Tour - Behind-the-scenes access to Italy\'s largest opera house',
-          'VIP Market Experience - Chef-guided tour of Ballarò market with cooking class',
-          'Capuchin Catacombs Private Visit - After-hours exclusive access',
-          'Monreale Cathedral VIP Access - Private viewing of Norman mosaics',
-          'Street Food Safari - Insider\'s guide to authentic Palermo cuisine',
-          'Norman Palace Extended Tour - Private access to restricted areas'
-        ]
-      }
-    },
-    {
-      day: 'Day 7',
-      location: 'Palermo → Cefalù → Gioiosa Marea → Taormina',
-      drivingDistance: 'Palermo to Cefalù: 1h | Cefalù to Gioiosa Marea: 1h 15min | Gioiosa Marea to Taormina: 2h',
-      activities: [
-        {
-          title: 'Morning Cefalù',
-          details: [
-            'Breakfast stop',
-            'Winding medieval streets',
-            'Norman cathedral',
-            'Beach promenade west of old town'
-          ]
-        },
-        {
-          title: 'Midday Gioiosa Marea',
-          details: [
-            'Explore Biviano family hometown',
-            'Lunch with sea views'
-          ]
-        },
-        {
-          title: 'Afternoon',
-          details: ['Arrive in Taormina, check in, evening stroll along Corso Umberto']
-        }
-      ],
-      hotel: {
-        name: 'Taormina Hotels (Corso Umberto recommended for easier walking)',
-        options: [
-          'Hotel Taodomus - Boutique hotel',
-          'Albergo Victoria - Historic building',
-          'Hotel Excelsior Palace - 4-star, sea views (10-min walk to Corso Umberto)',
-          'NH Collection Taormina - 5-star, good location (premium pricing)'
-        ]
-      }
-    },
-    {
-      day: 'Day 8',
-      location: 'Taormina Exploration',
-      activities: [
-        {
-          title: 'Morning Activities (Choose One)',
-          details: [
-            'Sicilian cooking class (multiple offerings available)',
-            'Walking tour of historic center'
-          ]
-        },
-        {
-          title: 'Must-See Taormina',
-          details: [
-            'Teatro Greco (built 3rd century BC by Greeks)',
-            'Corso Umberto cobblestone historic center',
-            '13th century Piazza Duomo',
-            'Cafes and terraces overlooking the sea'
-          ]
-        },
-        {
-          title: 'Optional',
-          details: ['Visit Giardini Naxos beach below Taormina']
-        }
-      ],
-      restaurant: {
-        title: 'Cooking Classes',
-        details: 'Taormina offers numerous cooking class options. Many include market visits and wine pairings. Book in advance for September.'
-      },
-      luxuryActivities: {
-        title: 'Additional Luxury Activities to Consider',
-        items: [
-          'Private Norman Cathedral Tour - Exclusive access to medieval architectural treasures',
-          'Sea-to-Table Experience - Join local fishermen and dine on fresh catch',
-          'Marquis Garden Visit - Private tour of botanical gardens with aperitivo',
-          'Traditional Almond Pastry Workshop - Learn Erice\'s famous dolci recipes',
-          'Coastal Photography Tour - Capture dramatic cliff and sea views',
-          'Private Beach Club Access - VIP experience at exclusive coastal resorts',
-          'Private Greek Theater Performance - Exclusive evening classical music or opera',
-          'Villa San Pancrazio Visit - Private tour of historic villa and gardens',
-          'Michelin-Star Dining - Reservations at exclusive restaurants with sea views',
-          'Sicilian Ceramic Workshop - Learn traditional pottery techniques',
-          'Boat Trip to Isola Bella - Private charter to the "Pearl of the Ionian Sea"',
-          'Gondola-style Evening Tour - Romantic sunset cruise along coast',
-          'VIP Shopping Experience - Personal shopping guide for local artisans'
-        ]
-      }
-    },
-    {
-      day: 'Day 9',
-      location: 'Mount Etna Adventure → Taormina',
-      drivingDistance: 'Taormina to Mt. Etna: 1h 15min',
-      activities: [
-        {
-          title: 'Mount Etna (UNESCO Site) - Europe\'s highest active volcano',
-          details: [
-            'Visit Rifugio Sapienza visitor center',
-            'Cable car to higher elevations',
-            '4x4 jeep tour to lava flows (book in advance)',
-            'Hiking trails in Etna National Park'
-          ]
-        },
-        {
-          title: 'Wine Experience',
-          details: ['Oro d\'Etna winery tasting on volcano slopes - wines from volcanic soil']
-        },
-        {
-          title: 'Evening',
-          details: ['Return to Taormina for farewell dinner']
-        }
-      ],
-      tips: 'Weather can change quickly. Bring layers and sturdy shoes. Full-day and half-day tours available. Volcanic soil produces unique Nerello Mascalese and Carricante wines.',
-      luxuryActivities: {
-        title: 'Additional Luxury Activities to Consider',
-        items: [
-          '4x4 Range Rover Adventure - Private guided tour with volcanologist to lava flows',
-          'Helicopter Tour - Fly over active craters and volcanic landscapes',
-          'Exclusive Winery Experience - Private tasting at Oro d\'Etna with vineyard lunch',
-          'Volcanic Cave Exploration - Guided tour through lava tubes',
-          'Sunset Wine Tasting - Premium volcanic wines with Mount Etna backdrop',
-          'Private Astronomy Experience - Stargazing from volcanic slopes with expert guide',
-          'Hot Springs Visit - Relaxation at thermal springs near the volcano'
-        ]
-      }
-    },
-    {
-      day: 'Day 10',
-      location: 'Taormina → Catania Airport → Denver',
-      drivingDistance: 'Taormina to Catania Airport: 1 hour',
-      activities: [
-        {
-          title: 'Morning',
-          details: ['Leisurely departure, drive to Catania International Airport']
-        },
-        {
-          title: 'Important',
-          details: ['Arrive 3 hours before departure for international flight']
-        },
-        {
-          title: 'Evening',
-          details: ['Overnight flight to Denver']
+          title: 'Archaeological Wonder',
+          details: ['8 Greek temples dating to 581 BC, guided tour recommended']
         }
       ]
     },
     {
-      day: 'Day 11',
-      location: 'Arrive Denver',
+      day: 'Day 6-7',
+      location: 'Palermo Experience',
       activities: [
         {
-          title: 'Arrival',
-          details: ['Land in Denver, end of Sicily adventure']
+          title: 'Norman Heritage',
+          details: ['Palatine Chapel, Teatro Massimo, Ballarò Market']
+        }
+      ]
+    },
+    {
+      day: 'Day 8-9',
+      location: 'Taormina & Mount Etna',
+      activities: [
+        {
+          title: 'Ancient Theater & Volcano',
+          details: ['Greek theater with sea views, Mount Etna adventure']
+        }
+      ]
+    },
+    {
+      day: 'Day 10-11',
+      location: 'Departure',
+      activities: [
+        {
+          title: 'Return Journey',
+          details: ['Catania Airport departure to Denver']
         }
       ]
     }
