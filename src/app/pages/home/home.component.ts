@@ -83,14 +83,14 @@ interface CarouselImage {
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-20 bg-slate-800">
       <div class="container mx-auto px-6">
-        <h2 class="text-5xl font-bold text-center mb-16 text-gray-800">
+        <h2 class="text-5xl font-bold text-center mb-16 text-white">
           Your Complete Sicily Experience
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          <mat-card class="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200"
+          <mat-card class="p-8 bg-white text-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200"
                     routerLink="/planning">
             <div class="text-6xl text-center mb-6">🏛️</div>
             <mat-card-header class="pb-4">
@@ -108,7 +108,7 @@ interface CarouselImage {
             </mat-card-content>
           </mat-card>
           
-          <mat-card class="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200"
+          <mat-card class="p-8 bg-white text-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200"
                     routerLink="/language">
             <div class="text-6xl text-center mb-6">🗣️</div>
             <mat-card-header class="pb-4">
@@ -126,7 +126,7 @@ interface CarouselImage {
             </mat-card-content>
           </mat-card>
           
-          <mat-card class="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
+          <mat-card class="p-8 bg-white text-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
             <div class="text-6xl text-center mb-6">✈️</div>
             <mat-card-header class="pb-4">
               <mat-card-title class="text-2xl font-bold text-center text-gray-800">Travel Logistics</mat-card-title>
@@ -147,27 +147,27 @@ interface CarouselImage {
     </section>
 
     <!-- Sicily Highlights Section -->
-    <section class="py-20 bg-gray-800 text-white">
+    <section class="py-20 bg-slate-900 text-white">
       <div class="container mx-auto px-6">
         <h2 class="text-5xl font-bold text-center mb-16">Sicily Highlights</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
-          <div class="bg-gray-700 p-8 rounded-xl hover:bg-gray-600 transition-all duration-300 hover:-translate-y-2">
+          <div class="bg-slate-700 p-8 rounded-xl hover:bg-slate-600 transition-all duration-300 hover:-translate-y-2">
             <h4 class="text-2xl font-bold mb-4 text-blue-400">🏛️ UNESCO World Heritage Sites</h4>
             <p class="text-gray-200 leading-relaxed">Syracuse, Noto, Ragusa Ibla, Piazza Armerina, Valley of Temples, Mount Etna</p>
           </div>
           
-          <div class="bg-gray-700 p-8 rounded-xl hover:bg-gray-600 transition-all duration-300 hover:-translate-y-2">
+          <div class="bg-slate-700 p-8 rounded-xl hover:bg-slate-600 transition-all duration-300 hover:-translate-y-2">
             <h4 class="text-2xl font-bold mb-4 text-red-400">🍷 Culinary Experiences</h4>
             <p class="text-gray-200 leading-relaxed">Volcanic soil wines, granita & brioche, cooking classes, street food tours</p>
           </div>
           
-          <div class="bg-gray-700 p-8 rounded-xl hover:bg-gray-600 transition-all duration-300 hover:-translate-y-2">
+          <div class="bg-slate-700 p-8 rounded-xl hover:bg-slate-600 transition-all duration-300 hover:-translate-y-2">
             <h4 class="text-2xl font-bold mb-4 text-yellow-400">🌟 Luxury Touches</h4>
             <p class="text-gray-200 leading-relaxed">Private palazzo visits, exclusive vineyard tastings, after-hours museum access</p>
           </div>
           
-          <div class="bg-gray-700 p-8 rounded-xl hover:bg-gray-600 transition-all duration-300 hover:-translate-y-2">
+          <div class="bg-slate-700 p-8 rounded-xl hover:bg-slate-600 transition-all duration-300 hover:-translate-y-2">
             <h4 class="text-2xl font-bold mb-4 text-green-400">👥 Family-Friendly</h4>
             <p class="text-gray-200 leading-relaxed">Comfortable pace for ages 40-80, 4-star accommodations, manageable distances</p>
           </div>
