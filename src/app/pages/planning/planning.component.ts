@@ -13,6 +13,8 @@ interface ItineraryDay {
   restaurant?: { title: string; details: string };
   luxuryActivities?: { title: string; items: string[] };
   tips?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 @Component({
@@ -192,36 +194,54 @@ interface ItineraryDay {
         <!-- Complete Itinerary -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
           <h2 class="text-3xl font-bold mb-6 text-dark-text">📅 Complete Day-by-Day Itinerary</h2>
-          <div class="space-y-6">
+          <div class="space-y-8">
             @for (day of itineraryDays; track day.day) {
               <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border backdrop-blur-sm">
-                <div class="text-2xl font-bold text-sicilian-sea mb-2">{{ day.day }}</div>
-                <div class="text-xl font-semibold text-dark-text mb-4">{{ day.location }}</div>
-                @if (day.drivingDistance) {
-                  <div class="bg-sicilian-gold/20 p-3 rounded-lg text-dark-text-secondary mb-4">
-                    <strong>Driving Distance:</strong> {{ day.drivingDistance }}
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  
+                  <!-- Day content (2/3 width) -->
+                  <div class="lg:col-span-2">
+                    <div class="text-2xl font-bold text-sicilian-sea mb-2">{{ day.day }}</div>
+                    <div class="text-xl font-semibold text-dark-text mb-4">{{ day.location }}</div>
+                    @if (day.drivingDistance) {
+                      <div class="bg-sicilian-gold/20 p-3 rounded-lg text-dark-text-secondary mb-4">
+                        <strong>Driving Distance:</strong> {{ day.drivingDistance }}
+                      </div>
+                    }
+                    @for (activity of day.activities; track activity.title) {
+                      <div class="bg-white/10 p-4 rounded-lg mb-3">
+                        <strong class="text-sicilian-sea">{{ activity.title }}</strong>
+                        <ul class="list-disc pl-5 text-dark-text-secondary">
+                          @for (detail of activity.details; track detail) {
+                            <li>{{ detail }}</li>
+                          }
+                        </ul>
+                      </div>
+                    }
+                    @if (day.luxuryActivities) {
+                      <div class="bg-sicilian-wine/20 p-4 rounded-lg mb-3">
+                        <strong class="text-italian-red-light">{{ day.luxuryActivities.title }}</strong>
+                        <ul class="list-disc pl-5 text-dark-text-secondary">
+                          @for (item of day.luxuryActivities.items; track item) {
+                            <li>{{ item }}</li>
+                          }
+                        </ul>
+                      </div>
+                    }
                   </div>
-                }
-                @for (activity of day.activities; track activity.title) {
-                  <div class="bg-white/10 p-4 rounded-lg mb-3">
-                    <strong class="text-sicilian-sea">{{ activity.title }}</strong>
-                    <ul class="list-disc pl-5 text-dark-text-secondary">
-                      @for (detail of activity.details; track detail) {
-                        <li>{{ detail }}</li>
-                      }
-                    </ul>
+                  
+                  <!-- Image (1/3 width) -->
+                  <div class="lg:col-span-1">
+                    @if (day.image) {
+                      <app-sicily-image 
+                        [imageName]="day.image"
+                        [alt]="day.imageAlt || day.location"
+                        containerClass="h-64 lg:h-full rounded-lg shadow-lg"
+                        imageClass="h-full w-full object-cover">
+                      </app-sicily-image>
+                    }
                   </div>
-                }
-                @if (day.luxuryActivities) {
-                  <div class="bg-sicilian-wine/20 p-4 rounded-lg mb-3">
-                    <strong class="text-italian-red-light">{{ day.luxuryActivities.title }}</strong>
-                    <ul class="list-disc pl-5 text-dark-text-secondary">
-                      @for (item of day.luxuryActivities.items; track item) {
-                        <li>{{ item }}</li>
-                      }
-                    </ul>
-                  </div>
-                }
+                </div>
               </div>
             }
           </div>
@@ -367,6 +387,8 @@ export class PlanningComponent {
       day: 'Days 1-2',
       location: 'Denver → Catania → Syracuse',
       drivingDistance: 'Catania to Syracuse: 50 minutes',
+      image: 'catania.jpg',
+      imageAlt: 'Catania Cathedral and baroque architecture',
       activities: [
         {
           title: 'Arrival Day',
@@ -381,6 +403,8 @@ export class PlanningComponent {
     {
       day: 'Day 3',
       location: 'Explore Syracuse',
+      image: 'ruins2.jpg',
+      imageAlt: 'Syracuse ancient ruins and archaeological park',
       activities: [
         {
           title: 'Morning',
@@ -407,6 +431,8 @@ export class PlanningComponent {
       day: 'Day 4',
       location: 'Noto → Ragusa → Piazza Armerina → Agrigento',
       drivingDistance: 'Total driving: ~5 hours with stops',
+      image: 'agrigento_steps.jpg',
+      imageAlt: 'Ancient stone steps in Agrigento archaeological sites',
       activities: [
         {
           title: 'UNESCO Sites Tour',
@@ -421,6 +447,8 @@ export class PlanningComponent {
     {
       day: 'Day 5',
       location: 'Valley of the Temples',
+      image: 'agrigento_ruins.jpg',
+      imageAlt: 'Valley of the Temples ancient Greek ruins',
       activities: [
         {
           title: 'Archaeological Wonder',
@@ -431,6 +459,8 @@ export class PlanningComponent {
     {
       day: 'Day 6-7',
       location: 'Palermo Experience',
+      image: 'catania-opera-entrance.jpg',
+      imageAlt: 'Grand opera house entrance in Sicily',
       activities: [
         {
           title: 'Norman Heritage',
@@ -441,6 +471,8 @@ export class PlanningComponent {
     {
       day: 'Day 8-9',
       location: 'Taormina & Mount Etna',
+      image: 'etna.jpg',
+      imageAlt: 'Mount Etna volcanic landscape and slopes',
       activities: [
         {
           title: 'Ancient Theater & Volcano',
@@ -451,6 +483,8 @@ export class PlanningComponent {
     {
       day: 'Day 10-11',
       location: 'Departure',
+      image: 'seaside.jpg',
+      imageAlt: 'Sicilian coastal views for farewell',
       activities: [
         {
           title: 'Return Journey',

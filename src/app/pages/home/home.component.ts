@@ -74,57 +74,6 @@ import { MatIconModule } from '@angular/material/icon';
         </div>
       </div>
     </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-slate-900">
-      <div class="container mx-auto px-6">
-        <h2 class="text-5xl font-bold text-center mb-16 text-white">
-          Your Complete Sicily Experience
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          <mat-card *ngFor="let feature of features"
-                    class="p-8 bg-white text-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200"
-                    [routerLink]="feature.route"
-                    [class.pointer-events-none]="!feature.route"
-                    [class.cursor-default]="!feature.route">
-            <div class="text-6xl text-center mb-6">{{ feature.icon }}</div>
-            <mat-card-header class="pb-4">
-              <mat-card-title class="text-2xl font-bold text-center text-gray-800">{{ feature.title }}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p class="text-gray-600 text-center text-lg leading-relaxed mb-6">
-                {{ feature.description }}
-              </p>
-              <div class="flex flex-wrap gap-2 justify-center">
-                <span *ngFor="let tag of feature.tags; let i = index"
-                      [class]="feature.tagColors[i]"
-                      class="px-4 py-2 rounded-full text-sm font-medium">
-                  {{ tag }}
-                </span>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sicily Highlights Section -->
-    <section class="py-20 bg-slate-800 text-white">
-      <div class="container mx-auto px-6">
-        <h2 class="text-5xl font-bold text-center mb-16">Sicily Highlights</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
-          <div *ngFor="let highlight of highlights"
-               class="bg-slate-700 p-8 rounded-xl hover:bg-slate-600 transition-all duration-300 hover:-translate-y-2">
-            <h4 class="text-2xl font-bold mb-4" [class]="highlight.color">
-              {{ highlight.icon }} {{ highlight.title }}
-            </h4>
-            <p class="text-gray-200 leading-relaxed">{{ highlight.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
   `,
   styles: [`
     .mat-mdc-card {
@@ -144,9 +93,6 @@ import { MatIconModule } from '@angular/material/icon';
   `]
 })
 export class HomeComponent {
-  // Simple component with no carousel complexity
-  
-  // Sicily destinations data for the gallery
   destinations = [
     {
       image: '/images/etna.jpg',
@@ -159,80 +105,24 @@ export class HomeComponent {
       description: 'Ancient amphitheater with stunning views over the Ionian Sea'
     },
     {
-      image: 'https://images.unsplash.com/photo-1591017939771-29e8c7024c84?w=600&q=80',
+      image: '/images/syracuse.jpg',
       title: 'Syracuse & Ortigia',
       description: 'Baroque architecture and ancient Greek civilization history'
     },
     {
-      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
+      image: '/images/sicilian_coastline.jpg',
       title: 'Sicilian Coastline',
       description: 'Crystal-clear Mediterranean waters and dramatic cliffs'
     },
     {
-      image: 'https://images.unsplash.com/photo-1559058775-dfcc32339444?w=600&q=80',
+      image: '/images/palermo.jpg',
       title: 'Palermo Streets',
       description: 'Vibrant markets, Norman palaces, and authentic street food'
     },
     {
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',
+      image: '/images/food.jpg',
       title: 'Sicilian Cuisine',
       description: 'Authentic flavors, volcanic soil wines, and culinary traditions'
-    }
-  ];
-
-  // Trip highlights data
-  highlights = [
-    {
-      icon: '🏛️',
-      title: 'UNESCO World Heritage Sites',
-      description: 'Syracuse, Noto, Ragusa Ibla, Piazza Armerina, Valley of Temples, Mount Etna',
-      color: 'text-blue-400'
-    },
-    {
-      icon: '🍷',
-      title: 'Culinary Experiences',
-      description: 'Volcanic soil wines, granita & brioche, cooking classes, street food tours',
-      color: 'text-red-400'
-    },
-    {
-      icon: '🌟',
-      title: 'Luxury Touches',
-      description: 'Private palazzo visits, exclusive vineyard tastings, after-hours museum access',
-      color: 'text-yellow-400'
-    },
-    {
-      icon: '👥',
-      title: 'Family-Friendly',
-      description: 'Comfortable pace for ages 40-80, 4-star accommodations, manageable distances',
-      color: 'text-green-400'
-    }
-  ];
-
-  // Feature cards data
-  features = [
-    {
-      icon: '🏛️',
-      title: 'Detailed Itinerary',
-      description: '10-day journey through UNESCO sites, baroque cities, Mount Etna and luxury experiences inspired by premium tour operators.',
-      tags: ['Valley of Temples', 'Mount Etna', 'Taormina'],
-      tagColors: ['bg-blue-100 text-blue-800', 'bg-red-100 text-red-800', 'bg-green-100 text-green-800'],
-      route: '/planning'
-    },
-    {
-      icon: '🗣️',
-      title: 'Italian Language Prep',
-      description: 'Complete guide to learning Italian in 1.5 years with resources, pricing, and Sicily-specific cultural tips.',
-      tags: ['Essential Phrases', 'Duolingo & Pimsleur', 'Cultural Tips'],
-      tagColors: ['bg-orange-100 text-orange-800', 'bg-purple-100 text-purple-800', 'bg-yellow-100 text-yellow-800'],
-      route: '/language'
-    },
-    {
-      icon: '✈️',
-      title: 'Travel Logistics',
-      description: 'Flight recommendations, car rentals for 6 adults, accommodation booking tips, and practical information.',
-      tags: ['Delta Flights', '4-Star Hotels', 'Senior-Friendly'],
-      tagColors: ['bg-indigo-100 text-indigo-800', 'bg-teal-100 text-teal-800', 'bg-pink-100 text-pink-800'],
-      route: null
     }
   ];
 
