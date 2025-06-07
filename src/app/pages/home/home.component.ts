@@ -204,38 +204,38 @@ export class HomeComponent implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   isBrowser = isPlatformBrowser(this.platformId);
 
-  carouselImages: CarouselImage[] = [
-    {
-      url: 'https://images.unsplash.com/photo-1539650116574-75c0c6d73273?w=1920&q=80',
-      title: 'Valley of the Temples',
-      description: 'Ancient Greek temples in Agrigento, one of the world\'s largest archaeological sites dating to 581 BC'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1602673221577-20b6b4d79b06?w=1920&q=80',
-      title: 'Mount Etna',
-      description: 'Europe\'s highest active volcano - UNESCO World Heritage Site with volcanic wines and lunar landscapes'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1566992863596-c3c1b6d84e11?w=1920&q=80',
-      title: 'Taormina Greek Theater',
-      description: 'Ancient amphitheater with stunning views over the Ionian Sea and Mount Etna in the distance'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1558549395-5fc99a40c1d0?w=1920&q=80',
-      title: 'Syracuse & Ortigia',
-      description: 'Baroque architecture and ancient history where Greek civilization once flourished in Sicily'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=80',
-      title: 'Sicilian Coastline',
-      description: 'Crystal-clear Mediterranean waters and dramatic cliffs along Sicily\'s stunning coastline'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1592831167740-86063de0e1d0?w=1920&q=80',
-      title: 'Palermo Streets',
-      description: 'Vibrant markets, Norman palaces, and authentic street food in Sicily\'s cultural capital'
-    }
-  ];
+carouselImages: CarouselImage[] = [
+  {
+    url: 'https://images.unsplash.com/photo-1594136789908-8d05ebfa88f2?w=1920&q=80',
+    title: 'Valley of the Temples',
+    description: 'Ancient Greek temples in Agrigento, one of the world\'s largest archaeological sites dating to 581 BC'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1610056494052-6a4f569a3476?w=1920&q=80',
+    title: 'Mount Etna',
+    description: 'Europe\'s highest active volcano - UNESCO World Heritage Site with volcanic wines and lunar landscapes'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1624969862293-84d619f7c46c?w=1920&q=80',
+    title: 'Taormina Greek Theater',
+    description: 'Ancient amphitheater with stunning views over the Ionian Sea and Mount Etna in the distance'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1591017939771-29e8c7024c84?w=1920&q=80',
+    title: 'Syracuse & Ortigia',
+    description: 'Baroque architecture and ancient history where Greek civilization once flourished in Sicily'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80',
+    title: 'Sicilian Coastline',
+    description: 'Crystal-clear Mediterranean waters and dramatic cliffs along Sicily\'s stunning coastline'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1559058775-dfcc32339444?w=1920&q=80',
+    title: 'Palermo Streets',
+    description: 'Vibrant markets, Norman palaces, and authentic street food in Sicily\'s cultural capital'
+  }
+];
 
   ngOnInit(): void {
     // Register Swiper elements only in browser
