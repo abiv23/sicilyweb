@@ -10,60 +10,67 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [CommonModule, RouterModule, MatToolbarModule, MatButtonModule, MatIconModule],
   template: `
-    <mat-toolbar class="bg-hero-gradient text-white shadow-lg sticky top-0 z-50">
+    <mat-toolbar class="bg-hero-gradient text-white shadow-2xl sticky top-0 z-50 border-b border-dark-border">
       <div class="container mx-auto px-4 flex justify-between items-center w-full">
-        <a routerLink="/" class="text-xl font-bold hover:opacity-80 transition-opacity no-underline text-white">
-          🇮🇹 Sicily Adventure
+        <a routerLink="/" class="text-2xl font-bold hover:opacity-80 transition-all duration-300 no-underline text-white flex items-center gap-3">
+          <span class="text-3xl">🇮🇹</span>
+          <span class="font-serif tracking-tight">Sicily Adventure</span>
         </a>
         
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex space-x-6">
+        <nav class="hidden md:flex space-x-2">
           <a routerLink="/" 
-             routerLinkActive="bg-white/30 shadow-lg" 
+             routerLinkActive="glass-effect scale-105" 
              [routerLinkActiveOptions]="{exact: true}"
-             class="px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5 no-underline text-white">
-            🏠 Home
+             class="px-6 py-3 rounded-full hover:glass-effect transition-all duration-300 hover:scale-105 no-underline text-white font-medium flex items-center gap-2">
+            <span class="text-lg">🏠</span>
+            <span>Home</span>
           </a>
           <a routerLink="/planning" 
-             routerLinkActive="bg-white/30 shadow-lg"
-             class="px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5 no-underline text-white">
-            🗺️ Trip Planning
+             routerLinkActive="glass-effect scale-105"
+             class="px-6 py-3 rounded-full hover:glass-effect transition-all duration-300 hover:scale-105 no-underline text-white font-medium flex items-center gap-2">
+            <span class="text-lg">🗺️</span>
+            <span>Trip Planning</span>
           </a>
           <a routerLink="/language" 
-             routerLinkActive="bg-white/30 shadow-lg"
-             class="px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5 no-underline text-white">
-            🗣️ Learn Italian
+             routerLinkActive="glass-effect scale-105"
+             class="px-6 py-3 rounded-full hover:glass-effect transition-all duration-300 hover:scale-105 no-underline text-white font-medium flex items-center gap-2">
+            <span class="text-lg">🗣️</span>
+            <span>Learn Italian</span>
           </a>
         </nav>
         
         <!-- Mobile menu button -->
-        <button mat-icon-button class="md:hidden" (click)="toggleMobileMenu()">
-          <mat-icon>menu</mat-icon>
+        <button mat-icon-button class="md:hidden text-white" (click)="toggleMobileMenu()">
+          <mat-icon class="text-white">menu</mat-icon>
         </button>
       </div>
       
       <!-- Mobile menu -->
       @if (mobileMenuOpen) {
-        <div class="md:hidden absolute top-full left-0 right-0 bg-hero-gradient border-t border-white/20">
-          <nav class="flex flex-col p-4 space-y-2">
+        <div class="md:hidden absolute top-full left-0 right-0 backdrop-blur-dark border-t border-dark-border shadow-2xl">
+          <nav class="flex flex-col p-6 space-y-3">
             <a routerLink="/" 
                (click)="closeMobileMenu()"
-               routerLinkActive="bg-white/30" 
+               routerLinkActive="glass-effect" 
                [routerLinkActiveOptions]="{exact: true}"
-               class="px-4 py-2 rounded-lg hover:bg-white/20 transition-all no-underline text-white">
-              🏠 Home
+               class="px-6 py-4 rounded-xl hover:glass-effect transition-all duration-300 no-underline text-white font-medium flex items-center gap-3">
+              <span class="text-xl">🏠</span>
+              <span>Home</span>
             </a>
             <a routerLink="/planning" 
                (click)="closeMobileMenu()"
-               routerLinkActive="bg-white/30"
-               class="px-4 py-2 rounded-lg hover:bg-white/20 transition-all no-underline text-white">
-              🗺️ Trip Planning
+               routerLinkActive="glass-effect"
+               class="px-6 py-4 rounded-xl hover:glass-effect transition-all duration-300 no-underline text-white font-medium flex items-center gap-3">
+              <span class="text-xl">🗺️</span>
+              <span>Trip Planning</span>
             </a>
             <a routerLink="/language" 
                (click)="closeMobileMenu()"
-               routerLinkActive="bg-white/30"
-               class="px-4 py-2 rounded-lg hover:bg-white/20 transition-all no-underline text-white">
-              🗣️ Learn Italian
+               routerLinkActive="glass-effect"
+               class="px-6 py-4 rounded-xl hover:glass-effect transition-all duration-300 no-underline text-white font-medium flex items-center gap-3">
+              <span class="text-xl">🗣️</span>
+              <span>Learn Italian</span>
             </a>
           </nav>
         </div>
@@ -73,6 +80,14 @@ import { MatIconModule } from '@angular/material/icon';
   styles: [`
     a {
       text-decoration: none !important;
+    }
+    
+    .mat-toolbar {
+      background: linear-gradient(135deg, #1a5f3f 0%, #c41e3a 50%, #d97706 100%) !important;
+    }
+    
+    .mat-icon {
+      color: white !important;
     }
   `]
 })

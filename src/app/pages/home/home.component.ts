@@ -28,7 +28,7 @@ interface CarouselImage {
             pagination="true"
             pagination-clickable="true"
             autoplay="true"
-            autoplay-delay="4000"
+            autoplay-delay="5000"
             loop="true"
             effect="fade"
             class="h-full w-full">
@@ -36,9 +36,9 @@ interface CarouselImage {
             @for (image of carouselImages; track image.url) {
               <swiper-slide>
                 <div class="relative h-full bg-cover bg-center bg-no-repeat flex items-center justify-center"
-                     [style.background-image]="'url(' + image.url + ')'">
-                  <div class="absolute bottom-16 left-16 right-16 bg-gradient-to-r from-black/80 to-black/40 p-8 rounded-2xl backdrop-blur-md border border-white/20">
-                    <h2 class="text-white text-4xl font-bold mb-4 drop-shadow-lg">{{ image.title }}</h2>
+                     [style.background-image]="'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(' + image.url + ')'">
+                  <div class="absolute bottom-8 left-8 right-8 bg-black/80 backdrop-blur-sm p-8 rounded-xl border border-white/20 shadow-2xl">
+                    <h2 class="text-white text-4xl font-bold mb-4">{{ image.title }}</h2>
                     <p class="text-white/90 text-xl leading-relaxed">{{ image.description }}</p>
                   </div>
                 </div>
@@ -48,9 +48,9 @@ interface CarouselImage {
         } @else {
           <!-- SSR Fallback -->
           <div class="relative h-full bg-cover bg-center bg-no-repeat flex items-center justify-center"
-               [style.background-image]="'url(' + carouselImages[0].url + ')'">
-            <div class="absolute bottom-16 left-16 right-16 bg-gradient-to-r from-black/80 to-black/40 p-8 rounded-2xl backdrop-blur-md border border-white/20">
-              <h2 class="text-white text-4xl font-bold mb-4 drop-shadow-lg">{{ carouselImages[0].title }}</h2>
+               [style.background-image]="'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(' + carouselImages[0].url + ')'">
+            <div class="absolute bottom-8 left-8 right-8 bg-black/80 backdrop-blur-sm p-8 rounded-xl border border-white/20 shadow-2xl">
+              <h2 class="text-white text-4xl font-bold mb-4">{{ carouselImages[0].title }}</h2>
               <p class="text-white/90 text-xl leading-relaxed">{{ carouselImages[0].description }}</p>
             </div>
           </div>
@@ -58,22 +58,22 @@ interface CarouselImage {
         
         <!-- Hero Text Overlay -->
         <div class="absolute inset-0 flex items-center justify-center z-10">
-          <div class="text-center text-white bg-gradient-to-br from-black/70 to-black/40 p-12 rounded-3xl backdrop-blur-lg border-2 border-white/30 max-w-4xl mx-4">
-            <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-300 to-blue-600 bg-clip-text text-transparent drop-shadow-2xl">
+          <div class="text-center text-white bg-black/70 backdrop-blur-md p-12 rounded-2xl border border-white/20 shadow-2xl max-w-4xl mx-4">
+            <h1 class="text-6xl font-bold mb-6 text-white">
               Sicily Family Adventure
             </h1>
-            <p class="text-2xl mb-8 text-white/95 drop-shadow-lg">
+            <p class="text-2xl mb-8 text-white/90">
               September 1-11, 2026 • An unforgettable journey through Sicily's ancient wonders
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
               <button mat-raised-button 
                       routerLink="/planning"
-                      class="!bg-gradient-to-r !from-sicily-blue !to-sicily-purple !text-white !px-8 !py-4 !text-lg !font-bold !rounded-full hover:!shadow-2xl hover:!scale-105 !transition-all !duration-300">
+                      class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-bold rounded-lg transition-all duration-300">
                 🗺️ View Trip Planning
               </button>
               <button mat-raised-button 
                       routerLink="/language"
-                      class="!bg-gradient-to-r !from-pink-400 !to-red-500 !text-white !px-8 !py-4 !text-lg !font-bold !rounded-full hover:!shadow-2xl hover:!scale-105 !transition-all !duration-300">
+                      class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg font-bold rounded-lg transition-all duration-300">
                 🗣️ Learn Italian
               </button>
             </div>
@@ -83,62 +83,62 @@ interface CarouselImage {
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-gray-50">
       <div class="container mx-auto px-6">
-        <h2 class="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-sicily-blue to-sicily-purple bg-clip-text text-transparent">
+        <h2 class="text-5xl font-bold text-center mb-16 text-gray-800">
           Your Complete Sicily Experience
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          <mat-card class="!p-8 !rounded-3xl hover:!shadow-2xl !transition-all !duration-300 hover:!-translate-y-2 cursor-pointer !border-2 hover:!border-sicily-blue"
+          <mat-card class="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200"
                     routerLink="/planning">
             <div class="text-6xl text-center mb-6">🏛️</div>
-            <mat-card-header class="!pb-4">
-              <mat-card-title class="!text-2xl !font-bold !text-center !text-gray-800">Detailed Itinerary</mat-card-title>
+            <mat-card-header class="pb-4">
+              <mat-card-title class="text-2xl font-bold text-center text-gray-800">Detailed Itinerary</mat-card-title>
             </mat-card-header>
             <mat-card-content>
               <p class="text-gray-600 text-center text-lg leading-relaxed mb-6">
-                10-day journey through UNESCO sites, baroque cities, Mount Etna, and luxury experiences inspired by premium tour operators.
+                10-day journey through UNESCO sites, baroque cities, Mount Etna and luxury experiences inspired by premium tour operators.
               </p>
               <div class="flex flex-wrap gap-2 justify-center">
-                <span class="bg-gradient-to-r from-sicily-blue to-sicily-purple text-white px-4 py-2 rounded-full text-sm font-medium">Valley of Temples</span>
-                <span class="bg-gradient-to-r from-sicily-blue to-sicily-purple text-white px-4 py-2 rounded-full text-sm font-medium">Mount Etna</span>
-                <span class="bg-gradient-to-r from-sicily-blue to-sicily-purple text-white px-4 py-2 rounded-full text-sm font-medium">Taormina</span>
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Valley of Temples</span>
+                <span class="bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium">Mount Etna</span>
+                <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">Taormina</span>
               </div>
             </mat-card-content>
           </mat-card>
           
-          <mat-card class="!p-8 !rounded-3xl hover:!shadow-2xl !transition-all !duration-300 hover:!-translate-y-2 cursor-pointer !border-2 hover:!border-pink-500"
+          <mat-card class="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200"
                     routerLink="/language">
             <div class="text-6xl text-center mb-6">🗣️</div>
-            <mat-card-header class="!pb-4">
-              <mat-card-title class="!text-2xl !font-bold !text-center !text-gray-800">Italian Language Prep</mat-card-title>
+            <mat-card-header class="pb-4">
+              <mat-card-title class="text-2xl font-bold text-center text-gray-800">Italian Language Prep</mat-card-title>
             </mat-card-header>
             <mat-card-content>
               <p class="text-gray-600 text-center text-lg leading-relaxed mb-6">
                 Complete guide to learning Italian in 1.5 years with resources, pricing, and Sicily-specific cultural tips.
               </p>
               <div class="flex flex-wrap gap-2 justify-center">
-                <span class="bg-gradient-to-r from-pink-400 to-red-500 text-white px-4 py-2 rounded-full text-sm font-medium">Essential Phrases</span>
-                <span class="bg-gradient-to-r from-pink-400 to-red-500 text-white px-4 py-2 rounded-full text-sm font-medium">Duolingo & Pimsleur</span>
-                <span class="bg-gradient-to-r from-pink-400 to-red-500 text-white px-4 py-2 rounded-full text-sm font-medium">Cultural Tips</span>
+                <span class="bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium">Essential Phrases</span>
+                <span class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">Duolingo & Pimsleur</span>
+                <span class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium">Cultural Tips</span>
               </div>
             </mat-card-content>
           </mat-card>
           
-          <mat-card class="!p-8 !rounded-3xl hover:!shadow-2xl !transition-all !duration-300 hover:!-translate-y-2 !border-2 hover:!border-green-500">
+          <mat-card class="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
             <div class="text-6xl text-center mb-6">✈️</div>
-            <mat-card-header class="!pb-4">
-              <mat-card-title class="!text-2xl !font-bold !text-center !text-gray-800">Travel Logistics</mat-card-title>
+            <mat-card-header class="pb-4">
+              <mat-card-title class="text-2xl font-bold text-center text-gray-800">Travel Logistics</mat-card-title>
             </mat-card-header>
             <mat-card-content>
               <p class="text-gray-600 text-center text-lg leading-relaxed mb-6">
                 Flight recommendations, car rentals for 6 adults, accommodation booking tips, and practical information.
               </p>
               <div class="flex flex-wrap gap-2 justify-center">
-                <span class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">Delta Flights</span>
-                <span class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">4-Star Hotels</span>
-                <span class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">Senior-Friendly</span>
+                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">Delta Flights</span>
+                <span class="bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-medium">4-Star Hotels</span>
+                <span class="bg-pink-100 text-pink-800 px-4 py-2 rounded-full text-sm font-medium">Senior-Friendly</span>
               </div>
             </mat-card-content>
           </mat-card>
@@ -146,30 +146,30 @@ interface CarouselImage {
       </div>
     </section>
 
-    <!-- Highlights Section -->
-    <section class="py-20 bg-hero-gradient text-white">
+    <!-- Sicily Highlights Section -->
+    <section class="py-20 bg-gray-800 text-white">
       <div class="container mx-auto px-6">
-        <h2 class="text-5xl font-bold text-center mb-16 text-yellow-300">Sicily Highlights</h2>
+        <h2 class="text-5xl font-bold text-center mb-16">Sicily Highlights</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
-          <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
-            <h4 class="text-2xl font-bold mb-4 text-yellow-300">🏛️ UNESCO World Heritage Sites</h4>
-            <p class="text-white/90 leading-relaxed">Syracuse, Noto, Ragusa Ibla, Piazza Armerina, Valley of Temples, Mount Etna</p>
+          <div class="bg-gray-700 p-8 rounded-xl hover:bg-gray-600 transition-all duration-300 hover:-translate-y-2">
+            <h4 class="text-2xl font-bold mb-4 text-blue-400">🏛️ UNESCO World Heritage Sites</h4>
+            <p class="text-gray-200 leading-relaxed">Syracuse, Noto, Ragusa Ibla, Piazza Armerina, Valley of Temples, Mount Etna</p>
           </div>
           
-          <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
-            <h4 class="text-2xl font-bold mb-4 text-yellow-300">🍷 Culinary Experiences</h4>
-            <p class="text-white/90 leading-relaxed">Volcanic soil wines, granita & brioche, cooking classes, street food tours</p>
+          <div class="bg-gray-700 p-8 rounded-xl hover:bg-gray-600 transition-all duration-300 hover:-translate-y-2">
+            <h4 class="text-2xl font-bold mb-4 text-red-400">🍷 Culinary Experiences</h4>
+            <p class="text-gray-200 leading-relaxed">Volcanic soil wines, granita & brioche, cooking classes, street food tours</p>
           </div>
           
-          <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
-            <h4 class="text-2xl font-bold mb-4 text-yellow-300">🌟 Luxury Touches</h4>
-            <p class="text-white/90 leading-relaxed">Private palazzo visits, exclusive vineyard tastings, after-hours museum access</p>
+          <div class="bg-gray-700 p-8 rounded-xl hover:bg-gray-600 transition-all duration-300 hover:-translate-y-2">
+            <h4 class="text-2xl font-bold mb-4 text-yellow-400">🌟 Luxury Touches</h4>
+            <p class="text-gray-200 leading-relaxed">Private palazzo visits, exclusive vineyard tastings, after-hours museum access</p>
           </div>
           
-          <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
-            <h4 class="text-2xl font-bold mb-4 text-yellow-300">👥 Family-Friendly</h4>
-            <p class="text-white/90 leading-relaxed">Comfortable pace for ages 40-80, 4-star accommodations, manageable distances</p>
+          <div class="bg-gray-700 p-8 rounded-xl hover:bg-gray-600 transition-all duration-300 hover:-translate-y-2">
+            <h4 class="text-2xl font-bold mb-4 text-green-400">👥 Family-Friendly</h4>
+            <p class="text-gray-200 leading-relaxed">Comfortable pace for ages 40-80, 4-star accommodations, manageable distances</p>
           </div>
         </div>
       </div>
@@ -178,29 +178,24 @@ interface CarouselImage {
   styles: [`
     /* Custom swiper styles */
     swiper-container {
-      --swiper-theme-color: #ffffff;
-      --swiper-pagination-color: #ffffff;
+      --swiper-theme-color: #3b82f6;
+      --swiper-pagination-color: #3b82f6;
       --swiper-navigation-color: #ffffff;
+      --swiper-navigation-size: 44px;
+    }
+
+    .mat-mdc-card {
+      background: white !important;
+      color: #374151 !important;
+    }
+
+    .mat-mdc-card-title {
+      color: #374151 !important;
     }
 
     @media (max-width: 768px) {
-      .hero-text h1 {
-        font-size: 2.5rem;
-      }
-      
-      .hero-text p {
-        font-size: 1.1rem;
-      }
-      
-      .slide-overlay {
-        bottom: 30px;
-        left: 30px;
-        right: 30px;
-        padding: 20px;
-      }
-      
-      .slide-title {
-        font-size: 1.8rem;
+      h1 {
+        font-size: 3rem !important;
       }
     }
   `]
@@ -242,7 +237,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   ];
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Register Swiper elements only in browser
     if (this.isBrowser) {
       import('swiper/element/bundle').then(() => {
@@ -251,7 +246,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     // Cleanup if needed
   }
 }
