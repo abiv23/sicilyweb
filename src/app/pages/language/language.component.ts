@@ -18,13 +18,35 @@ interface LearningResource {
   standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule, SicilyImageComponent],
   template: `
-    <div class="min-h-screen bg-dark-bg py-8">
-      <div class="container mx-auto px-6 max-w-6xl">
-        <h1 class="text-5xl font-bold text-center mb-4 text-dark-text">
-          🇮🇹 Learn Italian for Sicily
-        </h1>
-        <p class="text-center text-xl text-dark-text-secondary mb-12">Your complete guide to mastering basic Italian in 1.5 years</p>
-        
+    <div class="min-h-screen bg-dark-bg">
+      <!-- Hero Section with Vineyard Image - Full Viewport Width -->
+      <section class="relative h-96 overflow-hidden shadow-2xl">
+        <div class="relative h-full w-full">
+          <!-- Hero Background using vineyard.jpg -->
+          <app-sicily-image 
+            imageName="ruins_ortega.jpg"
+            alt="Sicilian Vineyard Landscape"
+            containerClass="absolute inset-0 h-full w-full"
+            imageClass="h-full w-full object-cover"
+            [enableHover]="false">
+          </app-sicily-image>
+          
+          <!-- Dark overlay for text readability -->
+          <div class="absolute inset-0 bg-black/60"></div>
+          
+          <!-- Hero Text Overlay -->
+          <div class="absolute inset-0 flex items-center justify-center z-10">
+            <div class="text-center text-white bg-black/70 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-white/20 shadow-2xl max-w-4xl mx-4">
+              <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
+                🇮🇹 Learn Italian for Sicily
+              </h1>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Container -->
+      <div class="container mx-auto px-6 max-w-6xl py-8">
         <h2 class="text-3xl font-bold mb-8 text-dark-text border-l-4 border-sicilian-sea pl-4">🗣️ Essential Phrases to Master First</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">

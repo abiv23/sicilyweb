@@ -42,14 +42,6 @@ import { MatIconModule } from '@angular/material/icon';
             </div>
           </div>
         </div>
-        
-        <!-- Bottom Image Info -->
-        <div class="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-sm p-6 border-t border-white/20">
-          <div class="container mx-auto px-4">
-            <h2 class="text-white text-3xl md:text-4xl font-bold mb-2">{{ heroData.imageTitle }}</h2>
-            <p class="text-white/90 text-lg md:text-xl leading-relaxed">{{ heroData.imageDescription }}</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -94,36 +86,71 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class HomeComponent {
   destinations = [
-    {
-      image: '/images/etna.jpg',
-      title: 'Mount Etna',
-      description: 'Europe\'s highest active volcano with volcanic wines and lunar landscapes'
-    },
-    {
-      image: '/images/taormina_theater.jpg',
-      title: 'Taormina Theater',
-      description: 'Ancient amphitheater with stunning views over the Ionian Sea'
-    },
-    {
-      image: '/images/syracuse.jpg',
-      title: 'Syracuse & Ortigia',
-      description: 'Baroque architecture and ancient Greek civilization history'
-    },
-    {
-      image: '/images/sicilian_coastline.jpg',
-      title: 'Sicilian Coastline',
-      description: 'Crystal-clear Mediterranean waters and dramatic cliffs'
-    },
-    {
-      image: '/images/palermo.jpg',
-      title: 'Palermo Streets',
-      description: 'Vibrant markets, Norman palaces, and authentic street food'
-    },
-    {
-      image: '/images/food.jpg',
-      title: 'Sicilian Cuisine',
-      description: 'Authentic flavors, volcanic soil wines, and culinary traditions'
-    }
+  {
+    image: '/images/catania_ruins_etna.jpg',
+    title: 'Catania',
+    description: 'Baroque UNESCO city rebuilt after Mount Etna eruptions, famous for fish markets and lava stone architecture'
+  },
+  {
+    image: '/images/taormina.jpg',
+    title: 'Taormina',
+    description: 'Dramatic hilltop town with ancient Greek theater overlooking Mount Etna and the Ionian Sea'
+  },
+  {
+    image: '/images/siracusa.jpg',
+    title: 'Siracusa',
+    description: 'Birthplace of Archimedes with stunning Ortigia island and ancient Greek archaeological treasures'
+  },
+  {
+    image: '/images/cefalu.jpg',
+    title: 'Cefalù',
+    description: 'Medieval fishing village with Norman cathedral and pristine beaches beneath dramatic cliffs'
+  },
+  {
+    image: '/images/piazza_armerina.jpg',
+    title: 'Piazza Armerina',
+    description: 'Home to Villa Romana del Casale with the world\'s finest preserved Roman mosaics'
+  },
+  {
+    image: '/images/agrigento.jpg',
+    title: 'Agrigento',
+    description: 'Valley of the Temples - eight magnificent Greek temples in the world\'s largest archaeological site'
+  },
+  {
+    image: '/images/erice.jpg',
+    title: 'Erice',
+    description: 'Enchanting medieval hilltop town famous for almond pastries and misty mountain views'
+  },
+  {
+    image: '/images/monreale.jpg',
+    title: 'Monreale',
+    description: 'Stunning Norman cathedral with golden Byzantine mosaics overlooking Palermo\'s Conca d\'Oro'
+  },
+  {
+    image: '/images/trapani.jpg',
+    title: 'Trapani',
+    description: 'Historic port city known for sea salt production, tuna fishing, and gateway to Egadi Islands'
+  },
+  {
+    image: '/images/ragusa.jpg',
+    title: 'Ragusa',
+    description: 'Baroque UNESCO gem with Ragusa Ibla\'s winding medieval streets and stunning valley views'
+  },
+  {
+    image: '/images/noto.jpg',
+    title: 'Noto',
+    description: 'The crown jewel of Sicilian Baroque architecture with honey-colored limestone buildings'
+  },
+  {
+    image: '/images/gioiosa_marea.png',
+    title: 'Gioiosa Marea',
+    description: 'Charming coastal town with family connections and beautiful views of the Aeolian Islands'
+  },
+  {
+    image: '/images/palermo.jpg',
+    title: 'Palermo',
+    description: 'Sicily\'s vibrant capital with Norman palaces, bustling markets, and incredible street food scene'
+  }
   ];
 
   // Hero section data
@@ -131,8 +158,8 @@ export class HomeComponent {
     backgroundImage: '/images/mountain_village.jpg',
     title: 'Sicily Family Adventure',
     subtitle: 'September 1-11, 2026 • An unforgettable journey through Sicily\'s ancient wonders',
-    imageTitle: 'Mountain Village in Sicily',
-    imageDescription: 'ToDo: look up where this is'
+    imageTitle: '',
+    imageDescription: ''
   };
 
   constructor() {

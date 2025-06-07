@@ -22,17 +22,45 @@ interface ItineraryDay {
   standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule, SicilyImageComponent],
   template: `
-    <div class="min-h-screen bg-dark-bg py-8">
-      <div class="container mx-auto px-6 max-w-6xl">
-        <!-- Hero Section -->
-        <div class="bg-hero-gradient text-white p-12 rounded-2xl text-center mb-8 shadow-2xl">
-          <h1 class="text-5xl font-bold mb-4">🇮🇹 Sicily Family Adventure</h1>
-          <div class="text-xl opacity-90">September 1-11, 2026 • 5-6 Adults • Budget: ~$7,000 per person</div>
+    <div class="min-h-screen bg-dark-bg">
+      <!-- Hero Section with Cathedral Image - Full Viewport Width -->
+      <section class="relative h-96 overflow-hidden shadow-2xl">
+        <div class="relative h-full w-full">
+          <!-- Hero Background using catherdal.jpg -->
+          <app-sicily-image 
+            imageName="catherdal.jpg"
+            alt="Sicilian Cathedral Architecture"
+            containerClass="absolute inset-0 h-full w-full"
+            imageClass="h-full w-full object-cover"
+            [enableHover]="false">
+          </app-sicily-image>
+          
+          <!-- Dark overlay for text readability -->
+          <div class="absolute inset-0 bg-black/60"></div>
+          
+          <!-- Hero Text Overlay -->
+          <div class="absolute inset-0 flex items-center justify-center z-10">
+            <div class="text-center text-white bg-black/70 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-white/20 shadow-2xl max-w-4xl mx-4">
+              <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
+                Travel Overview
+              </h1>
+            </div>
+          </div>
+          
+          <!-- Bottom Image Info -->
+          <div class="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-sm p-4 border-t border-white/20">
+            <div class="container mx-auto px-4">
+            </div>
+          </div>
         </div>
+      </section>
+
+      <!-- Main Content Container -->
+      <div class="container mx-auto px-6 max-w-6xl py-8">
 
         <!-- Travel Overview -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-3xl font-bold mb-6 text-dark-text">🏛️ Travel Overview</h2>
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">Trip Details</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-3">
               <p class="text-dark-text-secondary"><strong class="text-dark-text">Group:</strong> 5-6 adults (3-4 ages 40-48, 2 ages 78-80)</p>
