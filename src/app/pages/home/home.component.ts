@@ -94,39 +94,15 @@ import { DestinationsCardsComponent } from '../../components/destinations-cards/
           Sicilian Destinations
         </h2>
         <p class="text-lg text-dark-text-secondary max-w-2xl mx-auto">
-          Discover 13 extraordinary destinations across Sicily, from ancient Greek temples 
-          to volcanic landscapes and pristine coastal towns.
+          Click on any of the below destinations to go to the destination detail page.
+
+          If you want one added contact Andrew.
+
+          If you want one updated with activities, send Andrew an email with the info.
         </p>
       </div>
       
       <app-destinations-cards></app-destinations-cards>
-    </section>
-
-    <!-- Family Adventure Section -->
-    <section class="py-16 bg-sicilian-gradient">
-      <div class="max-w-4xl mx-auto px-6 text-center text-white">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-          Our Sicily Family Adventure
-        </h2>
-        
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button 
-            mat-raised-button 
-            routerLink="/planning"
-            class="cta-button primary">
-            <mat-icon class="mr-2">map</mat-icon>
-            View Trip Itinerary
-          </button>
-          
-          <button 
-            mat-raised-button 
-            routerLink="/language"
-            class="cta-button secondary">
-            <mat-icon class="mr-2">translate</mat-icon>
-            Learn Italian Phrases
-          </button>
-        </div>
-      </div>
     </section>
   `,
   styles: [`

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -80,10 +81,12 @@ interface DestinationInfo {
 
       <div class="container mx-auto px-6 max-w-6xl py-8">
         
-        <!-- Quick Info Grid -->
+        <!-- Quick Info Grid - Updated with activities section below -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
           <h2 class="text-2xl font-bold mb-6 text-dark-text">🗺️ Quick Information</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Top row with 3 main info sections -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <div class="space-y-2">
               <h3 class="font-semibold text-sicilian-sea">Best Time to Visit</h3>
               <p class="text-dark-text-secondary">{{ destination.bestTimeToVisit }}</p>
@@ -100,6 +103,25 @@ interface DestinationInfo {
                   {{ specialty }}
                 </span>
               </div>
+            </div>
+          </div>
+
+          <!-- Activities Section - Full Width Below -->
+          <div class="border-t border-dark-border pt-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-semibold text-sicilian-gold">Main Activities</h3>
+              <button (click)="navigateToAnchor('activities-section')" 
+                      class="text-sicilian-sea hover:text-blue-400 text-sm font-medium transition-colors duration-300 bg-transparent border-none cursor-pointer">
+                View All {{ destination.name }} Activities →
+              </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+              <button *ngFor="let activity of destination.activities; let i = index" 
+                      (click)="navigateToAnchor('activity-' + i)"
+                      class="text-dark-text-secondary hover:text-dark-text text-sm flex items-start transition-colors duration-300 cursor-pointer group bg-transparent border-none text-left p-0">
+                <span class="text-sicilian-gold group-hover:text-sicilian-sunset mr-2 mt-0.5 transition-colors duration-300">•</span>
+                <span class="group-hover:text-sicilian-sea transition-colors duration-300">{{ activity.title }}</span>
+              </button>
             </div>
           </div>
         </mat-card>
@@ -170,13 +192,14 @@ interface DestinationInfo {
         </mat-card>
 
         <!-- Activities and Things to Do -->
-        <div class="space-y-8">
+        <div id="activities-section" class="space-y-8">
           <h2 class="text-3xl font-bold text-dark-text border-l-4 border-sicilian-sea pl-4">
             🏛️ Things to Do in {{ destination.name }}
           </h2>
           
           <div *ngFor="let activity of destination.activities; let i = index" 
-               class="mb-12">
+               [id]="'activity-' + i"
+               class="mb-12 scroll-mt-20">
             <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl text-dark-text">
               
               <!-- Alternate layout: odd indexes have image on right -->
@@ -261,13 +284,73 @@ interface DestinationInfo {
       width: 18px;
       height: 18px;
     }
+
+    /* Button reset styles for anchor navigation */
+    button.bg-transparent {
+      background: transparent;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+    }
+
+    button.text-left {
+      text-align: left;
+    }
+
+    /* Smooth scrolling and anchor offset */
+    .scroll-mt-20 {
+      scroll-margin-top: 5rem;
+    }
+
+    /* Hover effects for activity links */
+    .group:hover .group-hover\\:text-sicilian-sunset {
+      color: rgb(217 119 6) !important;
+    }
+
+    .group:hover .group-hover\\:text-sicilian-sea {
+      color: rgb(3 105 161) !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .md\\:grid-cols-3 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+      
+      .lg\\:grid-cols-3 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .lg\\:grid-cols-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
   `]
 })
 export class DestinationInfoSheetComponent {
   @Input() destination!: DestinationInfo;
+  private isBrowser: boolean;
 
-  constructor() {
-    // Component for displaying detailed destination information
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  /**
+   * Navigate to anchor within current page
+   */
+  navigateToAnchor(anchor: string): void {
+    if (this.isBrowser) {
+      // Get current route and add anchor
+      const currentUrl = this.router.url.split('#')[0]; // Remove any existing anchors
+      this.router.navigateByUrl(currentUrl + '#' + anchor);
+    }
   }
 
   /**
