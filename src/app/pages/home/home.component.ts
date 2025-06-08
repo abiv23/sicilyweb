@@ -88,6 +88,17 @@ import { DestinationsCardsComponent } from '../../components/destinations-cards/
 
     <!-- Destinations Section -->
     <section id="destinations" class="py-16 bg-dark-bg">
+      <!-- Destinations Header -->
+      <div class="max-w-6xl mx-auto px-6 text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-dark-text mb-4 font-serif">
+          Sicilian Destinations
+        </h2>
+        <p class="text-lg text-dark-text-secondary max-w-2xl mx-auto">
+          Discover 13 extraordinary destinations across Sicily, from ancient Greek temples 
+          to volcanic landscapes and pristine coastal towns.
+        </p>
+      </div>
+      
       <app-destinations-cards></app-destinations-cards>
     </section>
 

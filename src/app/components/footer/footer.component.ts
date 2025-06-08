@@ -68,7 +68,7 @@ import { MatIconModule } from '@angular/material/icon';
             
             <!-- Copyright -->
             <div class="text-dark-text-secondary text-sm">
-              © 2025 Sicily Family Adventure. Built with ❤️ using Angular 19.
+              © 2025 Luca Biv Websites. Built with ❤️.
             </div>
             
             <!-- Travel Dates -->
