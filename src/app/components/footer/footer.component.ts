@@ -34,6 +34,10 @@ import { MatIconModule } from '@angular/material/icon';
                  class="block text-dark-text-secondary hover:text-white transition-colors duration-300 no-underline">
                 Home
               </a>
+              <a routerLink="/destinations" 
+                 class="block text-dark-text-secondary hover:text-white transition-colors duration-300 no-underline">
+                Destinations
+              </a>
               <a routerLink="/planning" 
                  class="block text-dark-text-secondary hover:text-white transition-colors duration-300 no-underline">
                 Trip Planning

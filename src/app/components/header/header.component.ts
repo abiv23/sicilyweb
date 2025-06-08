@@ -41,6 +41,12 @@ import { MatIconModule } from '@angular/material/icon';
               Home
             </a>
             <a 
+              routerLink="/destinations" 
+              routerLinkActive="active-link"
+              class="nav-link">
+              Destinations
+            </a>
+            <a 
               routerLink="/planning" 
               routerLinkActive="active-link"
               class="nav-link">
@@ -94,6 +100,13 @@ import { MatIconModule } from '@angular/material/icon';
               [routerLinkActiveOptions]="{exact: true}"
               class="mobile-nav-link">
               Home
+            </a>
+            <a 
+              routerLink="/destinations" 
+              (click)="closeMobileMenu()"
+              routerLinkActive="active-link"
+              class="mobile-nav-link">
+              Destinations
             </a>
             <a 
               routerLink="/planning" 
