@@ -53,6 +53,12 @@ import { MatIconModule } from '@angular/material/icon';
               Planning
             </a>
             <a 
+              routerLink="/itineraries/andrews-itinerary" 
+              routerLinkActive="active-link"
+              class="nav-link">
+              Andrew's Itinerary
+            </a>
+            <a 
               routerLink="/language" 
               routerLinkActive="active-link"
               class="nav-link">
@@ -121,6 +127,13 @@ import { MatIconModule } from '@angular/material/icon';
               routerLinkActive="active-link"
               class="mobile-nav-link">
               Language
+            </a>
+            <a 
+              routerLink="/itineraries/andrews-intinerary" 
+              (click)="closeMobileMenu()"
+              routerLinkActive="active-link"
+              class="mobile-nav-link">
+              Andrews Itiniterary
             </a>
           </div>
         </div>

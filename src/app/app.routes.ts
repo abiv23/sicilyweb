@@ -17,8 +17,10 @@ export const routes: Routes = [
     path: 'language',
     loadComponent: () => import('./pages/language/language.component').then(m => m.LanguageComponent)
   },
-  
-  // Individual destination routes
+  {
+    path: 'itineraries/andrews-itinerary',
+    loadComponent: () => import('./pages/itineraries/andrews-itinerary').then(m => m.AndrewsItineraryComponent)
+  },
   {
     path: 'agrigento',
     loadComponent: () => import('./pages/destinations/agrigento/agrigento.component').then(m => m.AgrigentoComponent)
