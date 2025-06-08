@@ -33,12 +33,6 @@ interface DestinationCard {
   ],
   template: `
     <div class="destinations-container">
-      <!-- Header Section -->
-      <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-dark-text mb-4 font-serif">
-          Sicilian Destinations
-        </h1>
-      </div>
 
       <!-- Destinations Grid -->
       <div class="destinations-grid">

@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SicilyImageComponent } from '../sicily-image/sicily-image.component';
 import { MapImageComponent } from '../map-image/map-image.component';
+import { DestinationsCardsComponent } from '../destinations-cards/destinations-cards.component';
 
 interface DestinationDistance {
   city: string;
@@ -44,7 +45,7 @@ interface DestinationInfo {
 @Component({
   selector: 'app-destination-info-sheet',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, SicilyImageComponent, MapImageComponent],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, SicilyImageComponent, MapImageComponent, DestinationsCardsComponent],
   template: `
     <div class="min-h-screen bg-dark-bg" *ngIf="destination">
       
@@ -129,6 +130,45 @@ interface DestinationInfo {
           </div>
         </mat-card>
 
+        <!-- Practical Information (if provided) -->
+        <mat-card *ngIf="destination.practicalInfo" 
+                  class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
+          <h2 class="text-2xl font-bold mb-6 text-dark-text">📋 Practical Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div *ngIf="destination.practicalInfo.parking" class="space-y-2">
+              <h3 class="font-semibold text-sicilian-sea flex items-center">
+                <mat-icon class="mr-2">local_parking</mat-icon>
+                Parking
+              </h3>
+              <p class="text-dark-text-secondary">{{ destination.practicalInfo.parking }}</p>
+            </div>
+            
+            <div *ngIf="destination.practicalInfo.accessibility" class="space-y-2">
+              <h3 class="font-semibold text-italian-green-light flex items-center">
+                <mat-icon class="mr-2">accessible</mat-icon>
+                Accessibility
+              </h3>
+              <p class="text-dark-text-secondary">{{ destination.practicalInfo.accessibility }}</p>
+            </div>
+            
+            <div *ngIf="destination.practicalInfo.costs" class="space-y-2">
+              <h3 class="font-semibold text-sicilian-sunset flex items-center">
+                <mat-icon class="mr-2">euro</mat-icon>
+                Costs
+              </h3>
+              <p class="text-dark-text-secondary">{{ destination.practicalInfo.costs }}</p>
+            </div>
+            
+            <div *ngIf="destination.practicalInfo.booking" class="space-y-2">
+              <h3 class="font-semibold text-italian-red-light flex items-center">
+                <mat-icon class="mr-2">book_online</mat-icon>
+                Booking
+              </h3>
+              <p class="text-dark-text-secondary">{{ destination.practicalInfo.booking }}</p>
+            </div>
+          </div>
+        </mat-card>
+
         <!-- Activities and Things to Do -->
         <div class="space-y-8">
           <h2 class="text-3xl font-bold text-dark-text border-l-4 border-sicilian-sea pl-4">
@@ -191,61 +231,12 @@ interface DestinationInfo {
             </mat-card>
           </div>
         </div>
-
-        <!-- Practical Information (if provided) -->
-        <mat-card *ngIf="destination.practicalInfo" 
-                  class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-2xl font-bold mb-6 text-dark-text">📋 Practical Information</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div *ngIf="destination.practicalInfo.parking" class="space-y-2">
-              <h3 class="font-semibold text-sicilian-sea flex items-center">
-                <mat-icon class="mr-2">local_parking</mat-icon>
-                Parking
-              </h3>
-              <p class="text-dark-text-secondary">{{ destination.practicalInfo.parking }}</p>
-            </div>
-            
-            <div *ngIf="destination.practicalInfo.accessibility" class="space-y-2">
-              <h3 class="font-semibold text-italian-green-light flex items-center">
-                <mat-icon class="mr-2">accessible</mat-icon>
-                Accessibility
-              </h3>
-              <p class="text-dark-text-secondary">{{ destination.practicalInfo.accessibility }}</p>
-            </div>
-            
-            <div *ngIf="destination.practicalInfo.costs" class="space-y-2">
-              <h3 class="font-semibold text-sicilian-sunset flex items-center">
-                <mat-icon class="mr-2">euro</mat-icon>
-                Costs
-              </h3>
-              <p class="text-dark-text-secondary">{{ destination.practicalInfo.costs }}</p>
-            </div>
-            
-            <div *ngIf="destination.practicalInfo.booking" class="space-y-2">
-              <h3 class="font-semibold text-italian-red-light flex items-center">
-                <mat-icon class="mr-2">book_online</mat-icon>
-                Booking
-              </h3>
-              <p class="text-dark-text-secondary">{{ destination.practicalInfo.booking }}</p>
-            </div>
-          </div>
-        </mat-card>
-
-        <!-- Call to Action -->
-        <mat-card class="p-8 bg-sicilian-gradient text-white shadow-xl">
-          <div class="text-center">
-            <h3 class="text-2xl font-bold mb-4">Ready to Explore {{ destination.name }}?</h3>
-            <p class="text-white/90 mb-6 text-lg">
-              Add this destination to your Sicily itinerary for an unforgettable experience.
-            </p>
-            <button mat-raised-button 
-                    class="bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-semibold backdrop-blur-sm border border-white/30 transition-all duration-300">
-              <mat-icon class="mr-2">add</mat-icon>
-              Add to Itinerary
-            </button>
-          </div>
-        </mat-card>
       </div>
+
+      <!-- All Destinations Cards -->
+      <section class="py-16 bg-dark-bg">
+        <app-destinations-cards></app-destinations-cards>
+      </section>
     </div>
   `,
   styles: [`
