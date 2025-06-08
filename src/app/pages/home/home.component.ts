@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -54,7 +54,8 @@ import { MatIconModule } from '@angular/material/icon';
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           
           <div *ngFor="let destination of destinations" 
-               class="bg-slate-700 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+               class="bg-slate-700 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 cursor-pointer"
+               (click)="navigateToDestination(destination.slug)">
             <img [src]="destination.image" 
                  [alt]="destination.title" 
                  class="w-full h-48 object-cover">
@@ -64,8 +65,8 @@ import { MatIconModule } from '@angular/material/icon';
               
               <!-- Navigation button to destination page -->
               <button mat-raised-button 
-                      [routerLink]="'/destinations/' + destination.slug"
-                      class="bg-sicilian-sea hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 w-full">
+                      (click)="navigateToDestination(destination.slug); $event.stopPropagation()"
+                      class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 w-full">
                 <mat-icon class="mr-2">explore</mat-icon>
                 Explore {{ destination.title }}
               </button>
@@ -76,8 +77,8 @@ import { MatIconModule } from '@angular/material/icon';
         <!-- View All Destinations Button -->
         <div class="text-center">
           <button mat-raised-button 
-                  routerLink="/destinations"
-                  class="bg-sicilian-gold hover:bg-yellow-600 text-white px-8 py-4 text-lg font-bold rounded-lg transition-all duration-300">
+                  routerLink="/planning"
+                  class="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 text-lg font-bold rounded-lg transition-all duration-300">
             <mat-icon class="mr-2">map</mat-icon>
             View All Destinations
           </button>
@@ -99,6 +100,11 @@ import { MatIconModule } from '@angular/material/icon';
       h1 {
         font-size: 3rem !important;
       }
+    }
+
+    /* Add hover effects for destination cards */
+    .cursor-pointer:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
     }
   `]
 })
@@ -188,12 +194,16 @@ export class HomeComponent {
   heroData = {
     backgroundImage: '/images/mountain_village.jpg',
     title: 'Sicily Family Adventure',
-    subtitle: 'September 1-11, 2026 • An unforgettable journey through Sicily\'s ancient wonders',
+    subtitle: 'September 1-11, 2026',
     imageTitle: '',
     imageDescription: ''
   };
 
-  constructor() {
-    // Component initialization - no complex setup needed
+  constructor(private router: Router) {
+    // Component initialization
+  }
+
+  navigateToDestination(slug: string) {
+    this.router.navigate(['/' + slug]);
   }
 }

@@ -18,8 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
               🇮🇹 Sicily Family Adventure
             </h3>
             <p class="text-dark-text-secondary mb-4 leading-relaxed">
-              An unforgettable journey through Sicily's ancient wonders, UNESCO sites, 
-              and rich cultural heritage. September 1-11, 2026.
+                September 1-11, 2026.
             </p>
             <div class="flex items-center space-x-4">
               <span class="text-sicilian-gold">✈️</span>

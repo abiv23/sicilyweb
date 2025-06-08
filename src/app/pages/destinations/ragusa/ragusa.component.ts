@@ -4,168 +4,169 @@ import { DestinationInfoSheetComponent } from '../../../components/destination-i
 import { DestinationInfo } from '../../../services/destinations-data.service';
 
 @Component({
-  selector: 'app-piazza-armerina',
+  selector: 'app-ragusa',
   standalone: true,
   imports: [CommonModule, DestinationInfoSheetComponent],
   template: `
-    <app-destination-info-sheet [destination]="piazzaArmerinaData"></app-destination-info-sheet>
+    <app-destination-info-sheet [destination]="ragusaData"></app-destination-info-sheet>
   `
 })
-export class PiazzaArmerinaComponent {
-  piazzaArmerinaData: DestinationInfo = {
-    name: 'Piazza Armerina',
-    slug: 'piazza-armerina',
-    shortDescription: 'Home to Villa Romana del Casale with the world\'s finest preserved Roman mosaics, showcasing 4th-century imperial luxury',
-    heroImage: 'piazza_armerina.jpg',
-    heroImageAlt: 'Aerial view of Piazza Armerina hilltop town with Villa Romana del Casale in valley',
-    region: 'Central Sicily (Enna Province)',
-    bestTimeToVisit: 'April-June, September-October (mild weather), Early morning or late afternoon for villa visit',
-    recommendedDuration: '1 full day (half day for villa, half day for town)',
-    specialties: ['Roman Mosaics', 'UNESCO Heritage', 'Medieval Town', 'Archaeological Site'],
+export class RagusaComponent {
+  ragusaData: DestinationInfo = {
+    name: 'Ragusa',
+    slug: 'ragusa',
+    shortDescription: 'Baroque UNESCO gem with Ragusa Ibla\'s winding medieval streets and stunning valley views from dramatic limestone cliffs',
+    heroImage: 'ragusa.jpg',
+    heroImageAlt: 'Ragusa Ibla baroque architecture cascading down limestone cliffs',
+    region: 'Southeast Sicily (Ragusa Province)',
+    bestTimeToVisit: 'April-June, September-October (perfect weather), late afternoon golden hour year-round',
+    recommendedDuration: '1-2 days',
+    specialties: ['Baroque Architecture', 'UNESCO Heritage', 'Medieval Streets', 'Valley Views'],
     
     distances: [
-      { city: 'Catania', miles: 55, driveTime: '1h 15m' },
-      { city: 'Agrigento', miles: 50, driveTime: '1h 10m' },
-      { city: 'Siracusa', miles: 75, driveTime: '1h 30m' },
-      { city: 'Ragusa', miles: 65, driveTime: '1h 10m' },
-      { city: 'Noto', miles: 80, driveTime: '1h 30m' },
-      { city: 'Palermo', miles: 105, driveTime: '2h' },
-      { city: 'Taormina', miles: 85, driveTime: '1h 45m' },
-      { city: 'Cefalù', miles: 145, driveTime: '2h 30m' },
-      { city: 'Trapani', miles: 155, driveTime: '2h 45m' },
-      { city: 'Erice', miles: 140, driveTime: '2h 45m' },
-      { city: 'Monreale', miles: 110, driveTime: '2h 15m' },
-      { city: 'Gioiosa Marea', miles: 120, driveTime: '2h 15m' }
+      { city: 'Modica', miles: 9, driveTime: '20m' },
+      { city: 'Noto', miles: 35, driveTime: '45m' },
+      { city: 'Siracusa', miles: 60, driveTime: '1h 15m' },
+      { city: 'Catania', miles: 80, driveTime: '1h 30m' },
+      { city: 'Piazza Armerina', miles: 65, driveTime: '1h 10m' },
+      { city: 'Agrigento', miles: 90, driveTime: '1h 45m' },
+      { city: 'Taormina', miles: 110, driveTime: '2h' },
+      { city: 'Palermo', miles: 155, driveTime: '2h 45m' },
+      { city: 'Cefalù', miles: 170, driveTime: '3h' },
+      { city: 'Trapani', miles: 220, driveTime: '3h 30m' },
+      { city: 'Erice', miles: 205, driveTime: '3h 30m' },
+      { city: 'Monreale', miles: 160, driveTime: '2h 50m' },
+      { city: 'Gioiosa Marea', miles: 170, driveTime: '3h' }
     ],
     
     activities: [
       {
-        title: 'Villa Romana del Casale - World\'s Greatest Roman Mosaics',
-        description: 'Explore this UNESCO World Heritage site containing the largest and most complex collection of Roman mosaics in the world. This 4th-century imperial villa showcases over 3,500 square meters of perfectly preserved mosaics depicting mythology, daily life, and spectacular hunting scenes.',
-        image: 'villa_romana_mosaics.jpg',
-        imageAlt: 'Intricate Roman mosaic depicting hunting scenes at Villa Romana del Casale',
+        title: 'Ragusa Ibla - Medieval Baroque Masterpiece',
+        description: 'Explore the enchanting lower town of Ragusa Ibla, a UNESCO World Heritage site featuring winding medieval streets lined with spectacular baroque palaces and churches. This ancient settlement cascades down limestone cliffs, creating one of Sicily\'s most photogenic and romantic neighborhoods.',
+        image: 'ragusa_ibla_streets.jpg',
+        imageAlt: 'Narrow winding streets of Ragusa Ibla with baroque palaces and stone architecture',
         highlights: [
-          'Hall of the Great Hunt - 60-meter corridor with African hunting scenes',
-          'Room of the Ten Maidens - famous "bikini girls" athletic mosaics',
-          'Triclinium mosaics depicting Labors of Hercules',
-          'Geometric patterns and mythological scenes throughout 40 rooms',
-          'Perfectly preserved after being buried for 700 years'
+          'Duomo di San Giorgio - stunning baroque cathedral with dramatic facade',
+          'Giardini Iblei - public gardens with panoramic valley views',
+          'Via del Mercato - charming street with local shops and cafés',
+          'Palazzo Cosentini - baroque palace with elaborate stone balconies',
+          'Chiesa di Santa Maria delle Scale - church with beautiful views'
         ],
         tips: [
-          'Visit early morning (8 AM) or late afternoon to avoid crowds',
-          'Audio guide essential for understanding complex iconography',
-          'Allow 2-3 hours for complete villa exploration',
-          'Comfortable shoes and sun protection required',
-          'Photography allowed but no flash to preserve mosaics'
-        ]
-      },
-      {
-        title: 'The Famous "Bikini Girls" and Athletic Mosaics',
-        description: 'Marvel at the world-famous Room of the Ten Maidens, featuring Roman women in what appear to be modern bikinis engaged in athletic competitions. These 4th-century mosaics provide unique insights into Roman women\'s sports and fashion, centuries ahead of their time.',
-        image: 'villa_bikini_girls.jpg',
-        imageAlt: 'Roman mosaic showing women in two-piece garments performing athletics',
-        highlights: [
-          'Ten young women in two-piece athletic garments',
-          'Various sports: running, discus, ball games, weight lifting',
-          'Victory crowns and palm branches for winners',
-          'Exceptional preservation showing fine details and colors',
-          'Revolutionary evidence of Roman women\'s athletics'
-        ],
-        tips: [
-          'Most photographed mosaic in the villa - expect crowds',
-          'Best viewing from raised walkway platform',
-          'Demonstrates Roman advanced textile and fashion knowledge',
-          'Part of larger complex showing imperial luxury lifestyle',
-          'Compare with other villa rooms showing male activities'
-        ]
-      },
-      {
-        title: 'Hall of the Great Hunt - Imperial Hunting Spectacle',
-        description: 'Walk through the magnificent 60-meter-long corridor showcasing the most spectacular hunting mosaics ever created. This imperial propaganda piece depicts exotic animals from across the Roman Empire being captured for gladiatorial games and private collections.',
-        image: 'villa_great_hunt.jpg',
-        imageAlt: 'Long corridor with elaborate hunting mosaics showing exotic animals and hunters',
-        highlights: [
-          'Exotic animals: elephants, tigers, lions, ostriches, hippos',
-          'Hunters, trappers, and animal handlers in action',
-          'Ships transporting animals across Mediterranean',
-          'Geographic representation of Roman Empire\'s extent',
-          'Incredible detail in animal anatomy and human expressions'
-        ],
-        tips: [
-          'Central masterpiece of the entire villa complex',
-          'Walk slowly to appreciate incredible artistic details',
-          'Represents imperial power over nature and distant lands',
-          'Notice different hunting techniques for various animals',
-          'Elevated walkways provide perfect viewing angles'
-        ]
-      },
-      {
-        title: 'Piazza Armerina Historic Town Center',
-        description: 'Explore the charming medieval hilltop town that grew around the famous villa. Piazza Armerina features Norman and baroque architecture, traditional Sicilian urban planning, and authentic local culture away from typical tourist routes.',
-        image: 'piazza_armerina_town.jpg',
-        imageAlt: 'Medieval streets and baroque cathedral of Piazza Armerina historic center',
-        highlights: [
-          'Cathedral with impressive baroque facade and dome',
-          'Castello Aragonese ruins with panoramic valley views',
-          'Via Monte for traditional shops and local crafts',
-          'Church of Sant\'Andrea with Norman foundations',
-          'Traditional Sicilian hilltop urban architecture'
-        ],
-        tips: [
-          'Park in lower town and walk up - steep but scenic',
+          'Wear comfortable shoes for steep cobblestone streets',
+          'Best photography during golden hour (late afternoon)',
           'Many shops close 1-4 PM for siesta',
-          'Cathedral often closed except for mass times',
-          'Local restaurants serve authentic regional cuisine',
-          'Evening passeggiata offers lovely town atmosphere'
+          'Free parking available at Giardini Iblei',
+          'Allow full day to properly explore winding streets'
         ]
       },
       {
-        title: 'Archaeological Museum and Roman Context',
-        description: 'Visit the local archaeological museum to understand the broader Roman context of Villa Romana del Casale. The museum provides essential background on late Roman Empire society, mosaic techniques, and the villa\'s original purpose.',
-        image: 'piazza_museum.jpg',
-        imageAlt: 'Archaeological artifacts and mosaic fragments in Piazza Armerina museum',
+        title: 'Duomo di San Giorgio and Baroque Churches',
+        description: 'Marvel at Ragusa Ibla\'s crown jewel - the magnificent Duomo di San Giorgio, considered one of the finest examples of Sicilian baroque architecture. This spectacular cathedral anchors a collection of beautiful baroque churches throughout the historic center.',
+        image: 'ragusa_duomo_san_giorgio.jpg',
+        imageAlt: 'Baroque facade of Duomo di San Giorgio with ornate architectural details',
         highlights: [
-          'Mosaic-making techniques and materials demonstrations',
-          'Roman artifacts found during villa excavations',
-          'Context for villa\'s role in late Roman Empire',
-          'Comparative examples from other Roman sites',
-          'Interactive displays explaining mosaic iconography'
+          'Dramatic baroque facade with twin bell towers',
+          'Ornate interior with marble decorations and frescoes',
+          'Spectacular dome visible from throughout the valley',
+          'Chiesa del Purgatorio with intricate stone carvings',
+          'San Giuseppe church with elegant baroque interior'
         ],
         tips: [
-          'Visit before or after villa for complete understanding',
-          'Museum entry: €3, often combined with villa tickets',
-          'English explanations available for major exhibits',
-          'Small but well-curated collection',
-          'Helps appreciate villa mosaics\' historical significance'
+          'Cathedral often closes 12:30-3:30 PM',
+          'Best external photos from Salita Commendatore',
+          'Interior visits free with modest dress required',
+          'Dome illuminated beautifully in evening',
+          'Combine with other baroque churches for complete experience'
         ]
       },
       {
-        title: 'Palio dei Normanni Medieval Festival',
-        description: 'Experience Piazza Armerina\'s spectacular medieval festival (August 12-14) celebrating the Norman conquest of Sicily. This colorful pageant features period costumes, horse racing, medieval crafts, and traditional Sicilian festivities.',
-        image: 'piazza_palio_normanni.jpg',
-        imageAlt: 'Medieval festival with costumed participants and horses in Piazza Armerina',
+        title: 'Ragusa Superiore and Modern Town',
+        description: 'Discover the upper town of Ragusa Superiore, rebuilt after the 1693 earthquake with wide streets and elegant baroque architecture. This modern section offers excellent shopping, dining, and serves as a perfect complement to medieval Ibla below.',
+        image: 'ragusa_superiore.jpg',
+        imageAlt: 'Wide streets and baroque buildings in Ragusa Superiore upper town',
         highlights: [
-          'Authentic medieval costumes and period recreation',
-          'Horse racing through historic town streets',
-          'Medieval craft demonstrations and markets',
-          'Historical reenactment of Norman conquest',
-          'Traditional Sicilian music and dancing'
+          'Cathedral of San Giovanni Battista with imposing facade',
+          'Corso Italia - main shopping and dining street',
+          'Palazzo Vescovile - elegant baroque bishop\'s palace',
+          'Municipal museums with local art and archaeology',
+          'Modern amenities and excellent restaurant scene'
         ],
         tips: [
-          'Festival occurs annually August 12-14',
-          'Book accommodations well in advance for festival dates',
-          'Authentic medieval atmosphere with local participation',
-          'Photography opportunities throughout town',
-          'Combines with villa visit for complete historical experience'
+          'Connected to Ibla by scenic walking paths and bus service',
+          'Better selection of modern hotels and restaurants',
+          'Corso Italia perfect for evening passeggiata',
+          'Free parking more readily available than in Ibla',
+          'Good base for exploring surrounding baroque towns'
+        ]
+      },
+      {
+        title: 'Valley Views and Panoramic Terraces',
+        description: 'Experience breathtaking panoramic views of the Irminio Valley and surrounding countryside from Ragusa\'s dramatic clifftop position. Multiple viewpoints offer spectacular vistas perfect for photography and appreciating the town\'s stunning natural setting.',
+        image: 'ragusa_valley_views.jpg',
+        imageAlt: 'Panoramic view of Irminio Valley from Ragusa with baroque architecture',
+        highlights: [
+          'Giardini Iblei terrace with sweeping valley panoramas',
+          'Ponte dei Cappuccini - historic bridge with dramatic views',
+          'Santa Maria delle Scale church steps viewpoint',
+          'Irminio Valley countryside and ancient settlements',
+          'Sunset photography opportunities over limestone landscape'
+        ],
+        tips: [
+          'Best views late afternoon with golden light',
+          'Bring camera for spectacular landscape photography',
+          'Giardini Iblei free access with benches for relaxation',
+          'Clear days offer views to Mediterranean Sea',
+          'Valley walks possible for adventurous visitors'
+        ]
+      },
+      {
+        title: 'Modica Day Trip - Chocolate and Baroque',
+        description: 'Take a short trip to nearby Modica, famous for its unique Aztec-inspired chocolate and additional spectacular baroque architecture. This UNESCO World Heritage town perfectly complements a Ragusa visit with its own dramatic cliff-side setting.',
+        image: 'modica_chocolate_baroque.jpg',
+        imageAlt: 'Modica baroque architecture with traditional chocolate shops',
+        highlights: [
+          'Traditional Modica chocolate made with ancient Aztec methods',
+          'Duomo di San Giorgio with impressive baroque staircase',
+          'Chocolate shops and traditional pastry makers',
+          'Dramatic cliff-side baroque palaces and churches',
+          'Annual chocolate festival and cultural events'
+        ],
+        tips: [
+          'Only 20 minutes drive from Ragusa',
+          'Try various chocolate flavors: cinnamon, chili, vanilla',
+          'Best chocolate shops: Antica Dolceria Bonajuto, Ciomod',
+          'Combine with Ragusa visit for complete baroque experience',
+          'Steep streets require comfortable walking shoes'
+        ]
+      },
+      {
+        title: 'Local Cuisine and Sicilian Specialties',
+        description: 'Experience exceptional Sicilian cuisine in Ragusa\'s restaurants, featuring traditional recipes, local ingredients, and regional specialties. The town\'s excellent dining scene showcases the rich culinary heritage of southeastern Sicily.',
+        image: 'ragusa_sicilian_cuisine.jpg',
+        imageAlt: 'Traditional Sicilian dishes and local specialties in Ragusa restaurant',
+        highlights: [
+          'Scacce ragusane - traditional stuffed flatbread specialty',
+          'Fresh ricotta from local sheep and goat farms',
+          'Nero d\'Avola and Cerasuolo di Vittoria regional wines',
+          'Traditional pasta dishes with local vegetables and cheeses',
+          'Excellent gelato and traditional Sicilian desserts'
+        ],
+        tips: [
+          'Scacce best found in local bakeries and tavolas calde',
+          'Many restaurants close Monday during off-season',
+          'Ibla has romantic dining with valley views',
+          'Local markets for fresh produce and regional products',
+          'Reserve dinner tables, especially in Ibla during peak season'
         ]
       }
     ],
     
     practicalInfo: {
-      parking: 'Villa Romana: Large free parking area at site entrance. Town center: Limited parking, use lower areas and walk up steep streets.',
-      accessibility: 'Villa has elevated walkways accessible to wheelchairs and mobility aids. Town center has steep medieval streets and steps - challenging for mobility issues.',
-      costs: 'Villa Romana: €10. Audio guide: €5. Museum: €3. Combined tickets available. Restaurants: €15-25 per person. Parking: Free.',
-      booking: 'No advance booking required for villa except large groups. Audio guides available on-site. Restaurant reservations recommended for weekend dining.'
+      parking: 'Ibla: Limited parking, use Giardini Iblei or walk from Superiore. Superiore: Street parking and paid lots available. Free parking at major viewpoints.',
+      accessibility: 'Ibla has steep cobblestone streets and steps - challenging for mobility issues. Superiore more accessible with flat main streets. Major churches have ramp access.',
+      costs: 'Churches: Free entry (donations welcome). Museums: €3-5. Restaurants: €18-25 per person. Parking: Mostly free or €1/hour in center.',
+      booking: 'No advance booking required for attractions. Restaurant reservations recommended for Ibla dinner dining, especially terrace tables with views.'
     }
   };
 
