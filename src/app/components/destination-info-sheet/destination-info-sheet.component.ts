@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SicilyImageComponent } from '../sicily-image/sicily-image.component';
+import { MapImageComponent } from '../map-image/map-image.component';
 
 interface DestinationDistance {
   city: string;
@@ -22,6 +23,7 @@ interface ActivitySection {
 
 interface DestinationInfo {
   name: string;
+  slug?: string; // Add optional slug property
   shortDescription: string;
   heroImage: string;
   heroImageAlt?: string;
@@ -42,7 +44,7 @@ interface DestinationInfo {
 @Component({
   selector: 'app-destination-info-sheet',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, SicilyImageComponent],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, SicilyImageComponent, MapImageComponent],
   template: `
     <div class="min-h-screen bg-dark-bg" *ngIf="destination">
       
@@ -100,6 +102,12 @@ interface DestinationInfo {
             </div>
           </div>
         </mat-card>
+
+        <!-- Sicily Map showing destination location -->
+        <app-map-image
+          [imageSrc]="getMapImagePath()"
+          [altText]="'Sicily map showing ' + destination.name + ' location'">
+        </app-map-image>
 
         <!-- Distance Information -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
@@ -269,5 +277,35 @@ export class DestinationInfoSheetComponent {
 
   constructor() {
     // Component for displaying detailed destination information
+  }
+
+  /**
+   * Generate the map image path based on destination data
+   * Uses destination slug or name to create consistent file naming
+   */
+  getMapImagePath(): string {
+    if (!this.destination) {
+      return '/images/sicily-map-default.jpg';
+    }
+
+    // Check if destination has a slug property, otherwise create one from name
+    let slug: string;
+    if (this.destination.slug && this.destination.slug.length > 0) {
+      slug = this.destination.slug;
+    } else {
+      // Convert destination name to slug format (lowercase, spaces to hyphens)
+      slug = this.destination.name.toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with hyphens
+        .replace(/[àáâãäå]/g, 'a')      // Handle accented characters
+        .replace(/[èéêë]/g, 'e')
+        .replace(/[ìíîï]/g, 'i')
+        .replace(/[òóôõö]/g, 'o')
+        .replace(/[ùúûü]/g, 'u')
+        .replace(/[ç]/g, 'c')
+        .replace(/[ñ]/g, 'n')
+        .replace(/[^a-z0-9-]/g, '');    // Remove any other special characters
+    }
+
+    return `/images/maps/map-${slug}.png`;
   }
 }

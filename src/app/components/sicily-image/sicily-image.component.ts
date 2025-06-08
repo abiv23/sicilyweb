@@ -60,12 +60,12 @@ export class SicilyImageComponent {
   @Input() enableHover: boolean = true;
 
   getImagePath(): string {
-    return `./images/${this.imageName}`;
+    return `/images/${this.imageName}`;
   }
 
   onImageError(event: any): void {
     console.warn(`Failed to load image: ${this.imageName}`);
     // Fallback to a default Sicily image
-    event.target.src = 'https://images.unsplash.com/photo-1594136789908-8d05ebfa88f2?w=800&q=80';
+    event.target.src = '';
   }
 }
