@@ -1,5 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, HostListener, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -196,18 +196,31 @@ export class HeaderComponent implements OnInit {
   isScrolled = false;
   mobileMenuOpen = false;
   private scrollThreshold = 50; // Pixels to scroll before showing nav
+  private isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit() {
-    // Check initial scroll position
-    this.checkScrollPosition();
+    // Only check scroll position if running in browser
+    if (this.isBrowser) {
+      this.checkScrollPosition();
+    }
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.checkScrollPosition();
+    if (this.isBrowser) {
+      this.checkScrollPosition();
+    }
   }
 
   private checkScrollPosition() {
+    if (!this.isBrowser) {
+      return;
+    }
+    
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.isScrolled = scrollTop > this.scrollThreshold;
     
@@ -220,23 +233,27 @@ export class HeaderComponent implements OnInit {
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
     
-    // Prevent body scroll when mobile menu is open
-    if (this.mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+    // Prevent body scroll when mobile menu is open (only in browser)
+    if (this.isBrowser) {
+      if (this.mobileMenuOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+      }
     }
   }
 
   closeMobileMenu() {
     this.mobileMenuOpen = false;
-    document.body.style.overflow = 'unset';
+    if (this.isBrowser) {
+      document.body.style.overflow = 'unset';
+    }
   }
 
   @HostListener('window:resize', [])
   onWindowResize() {
-    // Close mobile menu on desktop resize
-    if (window.innerWidth >= 768 && this.mobileMenuOpen) {
+    // Close mobile menu on desktop resize (only in browser)
+    if (this.isBrowser && window.innerWidth >= 768 && this.mobileMenuOpen) {
       this.closeMobileMenu();
     }
   }

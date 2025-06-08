@@ -60,9 +60,27 @@ import { MatIconModule } from '@angular/material/icon';
                  class="w-full h-48 object-cover">
             <div class="p-4">
               <h3 class="text-white text-xl font-bold mb-2">{{ destination.title }}</h3>
-              <p class="text-gray-300">{{ destination.description }}</p>
+              <p class="text-gray-300 mb-4">{{ destination.description }}</p>
+              
+              <!-- Navigation button to destination page -->
+              <button mat-raised-button 
+                      [routerLink]="'/destinations/' + destination.slug"
+                      class="bg-sicilian-sea hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 w-full">
+                <mat-icon class="mr-2">explore</mat-icon>
+                Explore {{ destination.title }}
+              </button>
             </div>
           </div>
+        </div>
+        
+        <!-- View All Destinations Button -->
+        <div class="text-center">
+          <button mat-raised-button 
+                  routerLink="/destinations"
+                  class="bg-sicilian-gold hover:bg-yellow-600 text-white px-8 py-4 text-lg font-bold rounded-lg transition-all duration-300">
+            <mat-icon class="mr-2">map</mat-icon>
+            View All Destinations
+          </button>
         </div>
       </div>
     </section>
@@ -86,71 +104,84 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class HomeComponent {
   destinations = [
-  {
-    image: '/images/catania_ruins_etna.jpg',
-    title: 'Catania',
-    description: 'Baroque UNESCO city rebuilt after Mount Etna eruptions, famous for fish markets and lava stone architecture'
-  },
-  {
-    image: '/images/taormina.jpg',
-    title: 'Taormina',
-    description: 'Dramatic hilltop town with ancient Greek theater overlooking Mount Etna and the Ionian Sea'
-  },
-  {
-    image: '/images/siracusa.jpg',
-    title: 'Siracusa',
-    description: 'Birthplace of Archimedes with stunning Ortigia island and ancient Greek archaeological treasures'
-  },
-  {
-    image: '/images/cefalu.jpg',
-    title: 'Cefalù',
-    description: 'Medieval fishing village with Norman cathedral and pristine beaches beneath dramatic cliffs'
-  },
-  {
-    image: '/images/piazza_armerina.jpg',
-    title: 'Piazza Armerina',
-    description: 'Home to Villa Romana del Casale with the world\'s finest preserved Roman mosaics'
-  },
-  {
-    image: '/images/agrigento.jpg',
-    title: 'Agrigento',
-    description: 'Valley of the Temples - eight magnificent Greek temples in the world\'s largest archaeological site'
-  },
-  {
-    image: '/images/erice.jpg',
-    title: 'Erice',
-    description: 'Enchanting medieval hilltop town famous for almond pastries and misty mountain views'
-  },
-  {
-    image: '/images/monreale.jpg',
-    title: 'Monreale',
-    description: 'Stunning Norman cathedral with golden Byzantine mosaics overlooking Palermo\'s Conca d\'Oro'
-  },
-  {
-    image: '/images/trapani.jpg',
-    title: 'Trapani',
-    description: 'Historic port city known for sea salt production, tuna fishing, and gateway to Egadi Islands'
-  },
-  {
-    image: '/images/ragusa.jpg',
-    title: 'Ragusa',
-    description: 'Baroque UNESCO gem with Ragusa Ibla\'s winding medieval streets and stunning valley views'
-  },
-  {
-    image: '/images/noto.jpg',
-    title: 'Noto',
-    description: 'The crown jewel of Sicilian Baroque architecture with honey-colored limestone buildings'
-  },
-  {
-    image: '/images/gioiosa_marea.png',
-    title: 'Gioiosa Marea',
-    description: 'Charming coastal town with family connections and beautiful views of the Aeolian Islands'
-  },
-  {
-    image: '/images/palermo.jpg',
-    title: 'Palermo',
-    description: 'Sicily\'s vibrant capital with Norman palaces, bustling markets, and incredible street food scene'
-  }
+    {
+      image: '/images/catania_ruins_etna.jpg',
+      title: 'Catania',
+      description: 'Baroque UNESCO city rebuilt after Mount Etna eruptions, famous for fish markets and lava stone architecture',
+      slug: 'catania'
+    },
+    {
+      image: '/images/taormina.jpg',
+      title: 'Taormina',
+      description: 'Dramatic hilltop town with ancient Greek theater overlooking Mount Etna and the Ionian Sea',
+      slug: 'taormina'
+    },
+    {
+      image: '/images/siracusa.jpg',
+      title: 'Siracusa',
+      description: 'Birthplace of Archimedes with stunning Ortigia island and ancient Greek archaeological treasures',
+      slug: 'siracusa'
+    },
+    {
+      image: '/images/cefalu.jpg',
+      title: 'Cefalù',
+      description: 'Medieval fishing village with Norman cathedral and pristine beaches beneath dramatic cliffs',
+      slug: 'cefalu'
+    },
+    {
+      image: '/images/piazza_armerina.jpg',
+      title: 'Piazza Armerina',
+      description: 'Home to Villa Romana del Casale with the world\'s finest preserved Roman mosaics',
+      slug: 'piazza-armerina'
+    },
+    {
+      image: '/images/agrigento.jpg',
+      title: 'Agrigento',
+      description: 'Valley of the Temples - eight magnificent Greek temples in the world\'s largest archaeological site',
+      slug: 'agrigento'
+    },
+    {
+      image: '/images/erice.jpg',
+      title: 'Erice',
+      description: 'Enchanting medieval hilltop town famous for almond pastries and misty mountain views',
+      slug: 'erice'
+    },
+    {
+      image: '/images/monreale.jpg',
+      title: 'Monreale',
+      description: 'Stunning Norman cathedral with golden Byzantine mosaics overlooking Palermo\'s Conca d\'Oro',
+      slug: 'monreale'
+    },
+    {
+      image: '/images/trapani.jpg',
+      title: 'Trapani',
+      description: 'Historic port city known for sea salt production, tuna fishing, and gateway to Egadi Islands',
+      slug: 'trapani'
+    },
+    {
+      image: '/images/ragusa.jpg',
+      title: 'Ragusa',
+      description: 'Baroque UNESCO gem with Ragusa Ibla\'s winding medieval streets and stunning valley views',
+      slug: 'ragusa'
+    },
+    {
+      image: '/images/noto.jpg',
+      title: 'Noto',
+      description: 'The crown jewel of Sicilian Baroque architecture with honey-colored limestone buildings',
+      slug: 'noto'
+    },
+    {
+      image: '/images/gioiosa_marea.png',
+      title: 'Gioiosa Marea',
+      description: 'Charming coastal town with family connections and beautiful views of the Aeolian Islands',
+      slug: 'gioiosa-marea'
+    },
+    {
+      image: '/images/palermo.jpg',
+      title: 'Palermo',
+      description: 'Sicily\'s vibrant capital with Norman palaces, bustling markets, and incredible street food scene',
+      slug: 'palermo'
+    }
   ];
 
   // Hero section data
