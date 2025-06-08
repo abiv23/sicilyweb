@@ -1,3 +1,4 @@
+// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -21,6 +22,30 @@ export const routes: Routes = [
     path: 'itineraries/andrews-itinerary',
     loadComponent: () => import('./pages/itineraries/andrews-itinerary').then(m => m.AndrewsItineraryComponent)
   },
+
+  // Family Planning Pages
+  {
+    path: 'planning/nonna',
+    loadComponent: () => import('./pages/planning/nonna/nonna.component').then(m => m.NonnaComponent)
+  },
+  {
+    path: 'planning/andrew',
+    loadComponent: () => import('./pages/planning/andrew/andrew.component').then(m => m.AndrewComponent)
+  },
+  {
+    path: 'planning/karen',
+    loadComponent: () => import('./pages/planning/karen/karen.component').then(m => m.KarenComponent)
+  },
+  {
+    path: 'planning/poppop',
+    loadComponent: () => import('./pages/planning/poppop/poppop.component').then(m => m.PoppopComponent)
+  },
+  {
+    path: 'planning/jim',
+    loadComponent: () => import('./pages/planning/jim/jim.component').then(m => m.JimComponent)
+  },
+
+  // Destination Pages
   {
     path: 'agrigento',
     loadComponent: () => import('./pages/destinations/agrigento/agrigento.component').then(m => m.AgrigentoComponent)

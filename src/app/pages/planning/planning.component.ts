@@ -1,7 +1,11 @@
+// src/app/pages/planning/planning.component.ts
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { SicilyImageComponent } from '../../components/sicily-image/sicily-image.component';
 
 interface ItineraryDay {
@@ -17,10 +21,19 @@ interface ItineraryDay {
   imageAlt?: string;
 }
 
+interface FamilyMember {
+  name: string;
+  role: string;
+  planningFocus: string[];
+  status: 'complete' | 'in-progress' | 'awaiting-notes';
+  avatar: string;
+  route: string;
+}
+
 @Component({
   selector: 'app-planning',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, SicilyImageComponent],
+  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule, MatIconModule, SicilyImageComponent],
   template: `
     <div class="min-h-screen bg-dark-bg">
       <!-- Hero Section with Cathedral Image - Full Viewport Width -->
@@ -41,15 +54,12 @@ interface ItineraryDay {
           <!-- Hero Text Overlay -->
           <div class="absolute inset-0 flex items-center justify-center z-10">
             <div class="text-center text-white bg-black/70 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-white/20 shadow-2xl max-w-4xl mx-4">
-              <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
-                Travel Overview
+              <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white font-serif">
+                Family Trip Planning
               </h1>
-            </div>
-          </div>
-          
-          <!-- Bottom Image Info -->
-          <div class="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-sm p-4 border-t border-white/20">
-            <div class="container mx-auto px-4">
+              <p class="text-lg md:text-xl text-white/90">
+                Collaborative planning for our Sicily adventure
+              </p>
             </div>
           </div>
         </div>
@@ -58,9 +68,145 @@ interface ItineraryDay {
       <!-- Main Content Container -->
       <div class="container mx-auto px-6 max-w-6xl py-8">
 
+        <!-- Planning Instructions -->
+        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
+          <h2 class="text-3xl font-bold mb-6 text-dark-text flex items-center">
+            <mat-icon class="mr-3 text-sicilian-gold">info</mat-icon>
+            How Family Planning Works
+          </h2>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div class="space-y-4">
+              <div class="bg-sicilian-sea/20 p-6 rounded-xl border border-sicilian-sea/50">
+                <h3 class="text-xl font-bold text-sicilian-sea mb-3">📝 Share Your Notes</h3>
+                <p class="text-dark-text-secondary leading-relaxed">
+                  Send your travel preferences, must-see destinations, hotel suggestions, 
+                  accessibility needs, or any special requests to <strong class="text-sicilian-gold">Andrew</strong>.
+                </p>
+              </div>
+              
+              <div class="bg-italian-green/20 p-6 rounded-xl border border-italian-green/50">
+                <h3 class="text-xl font-bold text-italian-green-light mb-3">🔄 Get Updates</h3>
+                <p class="text-dark-text-secondary leading-relaxed">
+                  Andrew will organize your notes into your personal planning section and 
+                  update the master itinerary to incorporate everyone's preferences.
+                </p>
+              </div>
+              
+              <div class="bg-sicilian-sunset/20 p-6 rounded-xl border border-sicilian-sunset/50">
+                <h3 class="text-xl font-bold text-sicilian-sunset mb-3">✅ Review & Refine</h3>
+                <p class="text-dark-text-secondary leading-relaxed">
+                  Check your personal planning page regularly for updates and send additional 
+                  feedback to help create the perfect family trip.
+                </p>
+              </div>
+            </div>
+            
+            <div>
+              <app-sicily-image 
+                imageName="gioiosa_marea.png"
+                alt="Sicily family planning collaboration"
+                containerClass="h-80 rounded-xl shadow-lg"
+                imageClass="h-full w-full object-cover">
+              </app-sicily-image>
+            </div>
+          </div>
+          
+          <div class="mt-6 p-4 bg-sicilian-gold/20 rounded-lg border border-sicilian-gold/50 text-center">
+            <p class="text-dark-text">
+              <strong class="text-sicilian-gold">💡 Pro Tip:</strong> 
+              The more specific your notes (hotel accessibility needs, food preferences, energy levels, 
+              must-see vs. optional attractions), the better Andrew can tailor the trip for everyone!
+            </p>
+          </div>
+        </mat-card>
+
+        <!-- Family Planning Pages -->
+        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
+          <h2 class="text-3xl font-bold mb-6 text-dark-text border-l-4 border-sicilian-sea pl-4">
+            👨‍👩‍👧‍👦 Individual Family Planning Pages
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div *ngFor="let member of familyMembers" class="group">
+              <mat-card class="h-full bg-dark-elevated border border-dark-border rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 text-dark-text cursor-pointer"
+                        [routerLink]="member.route">
+                
+                <!-- Status Badge -->
+                <div class="absolute top-4 right-4 z-10">
+                  <span [ngClass]="{
+                    'bg-italian-green text-white': member.status === 'complete',
+                    'bg-sicilian-sunset text-white': member.status === 'in-progress',
+                    'bg-gray-500 text-white': member.status === 'awaiting-notes'
+                  }" class="px-3 py-1 rounded-full text-xs font-medium">
+                    {{ getStatusLabel(member.status) }}
+                  </span>
+                </div>
+                
+                <!-- Card Content -->
+                <div class="p-6">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-sicilian-gold/20 rounded-full flex items-center justify-center mr-4">
+                      <span class="text-2xl">{{ member.avatar }}</span>
+                    </div>
+                    <div>
+                      <h3 class="text-xl font-bold text-dark-text">{{ member.name }}</h3>
+                      <p class="text-sicilian-sea text-sm">{{ member.role }}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="space-y-2 mb-4">
+                    <h4 class="font-semibold text-dark-text text-sm">Planning Focus:</h4>
+                    <div class="flex flex-wrap gap-1">
+                      <span *ngFor="let focus of member.planningFocus.slice(0, 2)" 
+                            class="bg-sicilian-gold/20 text-sicilian-gold px-2 py-1 rounded text-xs">
+                        {{ focus }}
+                      </span>
+                      <span *ngIf="member.planningFocus.length > 2" 
+                            class="bg-gray-500/20 text-gray-400 px-2 py-1 rounded text-xs">
+                        +{{ member.planningFocus.length - 2 }}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <button mat-raised-button 
+                          class="w-full bg-sicilian-sea hover:bg-blue-600 text-white rounded-lg transition-colors duration-300">
+                    <mat-icon class="mr-2">person</mat-icon>
+                    View {{ member.name }}'s Plan
+                  </button>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+          
+          <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border">
+            <h3 class="text-xl font-bold text-italian-red-light mb-3">📧 Send Your Notes to Andrew</h3>
+            <p class="text-dark-text-secondary mb-4">
+              Ready to share your Sicily trip preferences? Send Andrew your notes about:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <ul class="space-y-1 text-dark-text-secondary text-sm">
+                <li>• Hotel preferences and accessibility needs</li>
+                <li>• Must-see destinations vs. optional stops</li>
+                <li>• Activity interests and energy levels</li>
+                <li>• Food preferences and dietary restrictions</li>
+              </ul>
+              <ul class="space-y-1 text-dark-text-secondary text-sm">
+                <li>• Transportation concerns or preferences</li>
+                <li>• Budget considerations for activities</li>
+                <li>• Special family moments you'd like to include</li>
+                <li>• Any other thoughts or concerns</li>
+              </ul>
+            </div>
+            <p class="text-sicilian-gold font-medium">
+              💌 Email, text, or just tell Andrew your thoughts - he'll organize everything into your personal planning page!
+            </p>
+          </div>
+        </mat-card>
+
         <!-- Travel Overview -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-3xl font-bold mb-6 text-dark-text">Trip Details</h2>
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">🧳 Trip Overview</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-3">
               <p class="text-dark-text-secondary"><strong class="text-dark-text">Group:</strong> 5-6 adults (3-4 ages 40-48, 2 ages 78-80)</p>
@@ -133,176 +279,57 @@ interface ItineraryDay {
           </div>
         </mat-card>
 
-        <!-- Key Itinerary Highlights -->
+        <!-- Quick Itinerary Preview -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-3xl font-bold mb-6 text-dark-text">🗺️ Key Itinerary Highlights</h2>
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">🗺️ Itinerary Highlights Preview</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-sicilian-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <mat-icon class="text-3xl text-sicilian-gold">account_balance</mat-icon>
+              </div>
+              <h3 class="text-xl font-bold text-dark-text mb-3">Ancient Wonders</h3>
+              <p class="text-dark-text-secondary">
+                Valley of the Temples, Greek theaters in Syracuse and Taormina, 
+                Roman mosaics at Villa Romana del Casale.
+              </p>
+            </div>
+            
+            <div class="text-center">
+              <div class="w-16 h-16 bg-sicilian-sea/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <mat-icon class="text-3xl text-sicilian-sea">terrain</mat-icon>
+              </div>
+              <h3 class="text-xl font-bold text-dark-text mb-3">Natural Beauty</h3>
+              <p class="text-dark-text-secondary">
+                Mount Etna volcanic adventure, coastal views from Taormina, 
+                baroque towns perched on dramatic cliffs.
+              </p>
+            </div>
+            
+            <div class="text-center">
+              <div class="w-16 h-16 bg-italian-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <mat-icon class="text-3xl text-italian-green-light">family_restroom</mat-icon>
+              </div>
+              <h3 class="text-xl font-bold text-dark-text mb-3">Family Heritage</h3>
+              <p class="text-dark-text-secondary">
+                Visit Gioiosa Marea for family connections, authentic Sicilian 
+                village life, and multi-generational experiences.
+              </p>
+            </div>
+          </div>
           
-          <!-- Agrigento section -->
-          <div class="mb-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div class="space-y-4">
-                <h3 class="text-2xl font-bold text-sicilian-gold">Day 4-5: Valley of the Temples</h3>
-                <p class="text-dark-text-secondary">
-                  Explore the world's largest archaeological site with 8 Greek temples dating to 581 BC. 
-                  This UNESCO World Heritage site showcases some of the best-preserved ancient Greek 
-                  architecture outside of Greece.
-                </p>
-                <ul class="list-disc pl-5 text-dark-text-secondary space-y-1">
-                  <li>2-hour guided tours available ($52 pp with AAA)</li>
-                  <li>Early morning visits to avoid crowds</li>
-                  <li>Sunset photography opportunities</li>
-                </ul>
-              </div>
-              <div>
-                <app-sicily-image 
-                  imageName="agrigento_ruins.jpg"
-                  alt="Valley of the Temples Ancient Ruins"
-                  containerClass="h-64 rounded-xl shadow-lg"
-                  imageClass="h-full w-full object-cover">
-                </app-sicily-image>
-              </div>
-            </div>
-          </div>
-
-          <!-- Mount Etna section -->
-          <div class="mb-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <app-sicily-image 
-                  imageName="etna.jpg"
-                  alt="Mount Etna Volcanic Landscape"
-                  containerClass="h-64 rounded-xl shadow-lg"
-                  imageClass="h-full w-full object-cover">
-                </app-sicily-image>
-              </div>
-              <div class="space-y-4">
-                <h3 class="text-2xl font-bold text-sicilian-sunset">Day 9: Mount Etna Adventure</h3>
-                <p class="text-dark-text-secondary">
-                  Europe's highest active volcano offers breathtaking lunar landscapes and unique 
-                  volcanic soil wines. Visit Rifugio Sapienza, take cable cars to higher elevations, 
-                  and explore lava flows with 4x4 jeep tours.
-                </p>
-                <ul class="list-disc pl-5 text-dark-text-secondary space-y-1">
-                  <li>Oro d'Etna winery tasting on volcano slopes</li>
-                  <li>Hiking trails in Etna National Park</li>
-                  <li>Volcanic cave exploration opportunities</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Syracuse section -->
-          <div class="mb-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div class="space-y-4">
-                <h3 class="text-2xl font-bold text-sicilian-sea">Day 3: Syracuse & Ortigia</h3>
-                <p class="text-dark-text-secondary">
-                  Discover the birthplace of Archimedes with its Roman amphitheater, Ear of Dionysius, 
-                  and the baroque island of Ortigia. This UNESCO site combines ancient Greek and Roman 
-                  history with stunning waterfront architecture.
-                </p>
-                <ul class="list-disc pl-5 text-dark-text-secondary space-y-1">
-                  <li>Archaeological park with Greek theater</li>
-                  <li>Ortigia island's medieval streets</li>
-                  <li>Traditional granita & brioche breakfast</li>
-                </ul>
-              </div>
-              <div>
-                <app-sicily-image 
-                  imageName="ruins2.jpg"
-                  alt="Syracuse Ancient Ruins"
-                  containerClass="h-64 rounded-xl shadow-lg"
-                  imageClass="h-full w-full object-cover">
-                </app-sicily-image>
-              </div>
-            </div>
+          <div class="mt-8 text-center">
+            <button mat-raised-button 
+                    routerLink="/itineraries/andrews-itinerary"
+                    class="bg-sicilian-gold hover:bg-yellow-600 text-white px-8 py-3 text-lg font-bold rounded-lg transition-colors duration-300 shadow-lg">
+              <mat-icon class="mr-2">calendar_today</mat-icon>
+              View Complete Detailed Itinerary
+            </button>
           </div>
         </mat-card>
 
-        <!-- Complete Itinerary -->
+        <!-- Budget Overview -->
         <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-3xl font-bold mb-6 text-dark-text">📅 Complete Day-by-Day Itinerary</h2>
-          <div class="space-y-8">
-            @for (day of itineraryDays; track day.day) {
-              <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border backdrop-blur-sm">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                  
-                  <!-- Day content (2/3 width) -->
-                  <div class="lg:col-span-2">
-                    <div class="text-2xl font-bold text-sicilian-sea mb-2">{{ day.day }}</div>
-                    <div class="text-xl font-semibold text-dark-text mb-4">{{ day.location }}</div>
-                    @if (day.drivingDistance) {
-                      <div class="bg-sicilian-gold/20 p-3 rounded-lg text-dark-text-secondary mb-4">
-                        <strong>Driving Distance:</strong> {{ day.drivingDistance }}
-                      </div>
-                    }
-                    @for (activity of day.activities; track activity.title) {
-                      <div class="bg-white/10 p-4 rounded-lg mb-3">
-                        <strong class="text-sicilian-sea">{{ activity.title }}</strong>
-                        <ul class="list-disc pl-5 text-dark-text-secondary">
-                          @for (detail of activity.details; track detail) {
-                            <li>{{ detail }}</li>
-                          }
-                        </ul>
-                      </div>
-                    }
-                    @if (day.luxuryActivities) {
-                      <div class="bg-sicilian-wine/20 p-4 rounded-lg mb-3">
-                        <strong class="text-italian-red-light">{{ day.luxuryActivities.title }}</strong>
-                        <ul class="list-disc pl-5 text-dark-text-secondary">
-                          @for (item of day.luxuryActivities.items; track item) {
-                            <li>{{ item }}</li>
-                          }
-                        </ul>
-                      </div>
-                    }
-                  </div>
-                  
-                  <!-- Image (1/3 width) -->
-                  <div class="lg:col-span-1">
-                    @if (day.image) {
-                      <app-sicily-image 
-                        [imageName]="day.image"
-                        [alt]="day.imageAlt || day.location"
-                        containerClass="h-64 lg:h-full rounded-lg shadow-lg"
-                        imageClass="h-full w-full object-cover">
-                      </app-sicily-image>
-                    }
-                  </div>
-                </div>
-              </div>
-            }
-          </div>
-        </mat-card>
-
-        <!-- Accommodation Strategy -->
-        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-3xl font-bold mb-6 text-dark-text">🏨 Accommodation Strategy</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 class="text-xl font-bold mb-4 text-sicilian-sea">Hotel Selection Criteria</h3>
-              <ul class="space-y-3 text-dark-text-secondary">
-                <li><strong class="text-dark-text">Rating:</strong> 4-star minimum for comfort</li>
-                <li><strong class="text-dark-text">Location:</strong> Central, walkable to main attractions</li>
-                <li><strong class="text-dark-text">Accessibility:</strong> Senior-friendly features</li>
-                <li><strong class="text-dark-text">Amenities:</strong> Free breakfast, air conditioning, WiFi</li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold mb-4 text-italian-red-light">Base Locations</h3>
-              <ul class="space-y-3 text-dark-text-secondary">
-                <li><strong class="text-dark-text">Syracuse (2 nights):</strong> Ancient sites and Ortigia</li>
-                <li><strong class="text-dark-text">Agrigento (2 nights):</strong> Valley of Temples</li>
-                <li><strong class="text-dark-text">Palermo (2 nights):</strong> Capital city culture</li>
-                <li><strong class="text-dark-text">Taormina (3 nights):</strong> Mount Etna and theater</li>
-              </ul>
-            </div>
-          </div>
-        </mat-card>
-
-        <!-- Budget Breakdown -->
-        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-3xl font-bold mb-6 text-dark-text">💰 Budget Breakdown</h2>
+          <h2 class="text-3xl font-bold mb-6 text-dark-text">💰 Budget Overview</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="bg-sicilian-sea/30 p-6 rounded-xl border border-sicilian-sea/50">
               <h4 class="font-bold text-sicilian-sea mb-2">Accommodations</h4>
@@ -333,65 +360,6 @@ interface ItineraryDay {
           </div>
         </mat-card>
 
-        <!-- Booking Timeline -->
-        <mat-card class="p-8 bg-dark-surface border border-dark-border rounded-2xl shadow-xl mb-8 text-dark-text">
-          <h2 class="text-3xl font-bold mb-6 text-dark-text">📋 Booking Timeline & Tips</h2>
-          <div class="space-y-6">
-            <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border">
-              <h3 class="text-xl font-bold mb-4 text-sicilian-sea">12 Months Before (September 2025)</h3>
-              <ul class="space-y-2 text-dark-text-secondary">
-                <li>✈️ Book flights - best prices and seat selection</li>
-                <li>🏨 Reserve hotels in Syracuse and Taormina</li>
-                <li>🎭 Check for special events in September 2026</li>
-              </ul>
-            </div>
-            
-            <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border">
-              <h3 class="text-xl font-bold mb-4 text-italian-green-light">6 Months Before (March 2026)</h3>
-              <ul class="space-y-2 text-dark-text-secondary">
-                <li>🚗 Book rental cars for 6-person group</li>
-                <li>🎫 Pre-book Valley of Temples, Mount Etna tours</li>
-                <li>🍷 Reserve cooking classes and wine tastings</li>
-              </ul>
-            </div>
-            
-            <div class="bg-dark-elevated p-6 rounded-xl border border-dark-border">
-              <h3 class="text-xl font-bold mb-4 text-sicilian-sunset">1 Month Before (August 2026)</h3>
-              <ul class="space-y-2 text-dark-text-secondary">
-                <li>📄 Confirm all reservations</li>
-                <li>💳 Notify banks of travel plans</li>
-                <li>🧳 Pack comfortable walking shoes</li>
-              </ul>
-            </div>
-          </div>
-        </mat-card>
-
-        <!-- Final Preview -->
-        <mat-card class="p-8 bg-sicilian-gradient text-white shadow-xl">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 class="text-3xl font-bold mb-4">🏛️ Complete Sicily Experience</h3>
-              <p class="text-white/90 mb-6 text-lg leading-relaxed">
-                From UNESCO World Heritage sites to volcanic wines, your Sicily adventure includes 
-                detailed daily schedules and luxury experiences.
-              </p>
-              <div class="backdrop-blur-sm bg-white/10 p-4 rounded-xl">
-                <p class="text-lg font-semibold text-white">
-                  <strong class="text-sicilian-gold">✅ Ready:</strong> Complete planning guide for your Sicily adventure!
-                </p>
-              </div>
-            </div>
-            <div>
-              <app-sicily-image 
-                imageName="seaside.jpg"
-                alt="Sicilian Coastal Views"
-                containerClass="h-80 rounded-xl shadow-2xl"
-                imageClass="h-full w-full object-cover"
-                [enableHover]="false">
-              </app-sicily-image>
-            </div>
-          </div>
-        </mat-card>
       </div>
     </div>
   `,
@@ -404,12 +372,114 @@ interface ItineraryDay {
       color: inherit !important;
     }
     
+    mat-icon {
+      @apply text-inherit;
+      font-size: 1.5rem !important;
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+    }
+
+    mat-icon.text-3xl {
+      font-size: 1.875rem !important;
+      width: 1.875rem !important;
+      height: 1.875rem !important;
+    }
+
+    mat-icon.mr-2 {
+      font-size: 1.25rem !important;
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+    }
+    
     .backdrop-blur-sm {
       backdrop-filter: blur(8px);
+    }
+
+    /* Card hover effects */
+    .group:hover .group-hover\\:scale-105 {
+      transform: scale(1.05);
+    }
+
+    /* Focus states for accessibility */
+    button:focus-visible,
+    a:focus-visible,
+    .cursor-pointer:focus-visible {
+      @apply outline-none ring-2 ring-sicilian-gold ring-offset-2 ring-offset-dark-bg;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .lg\\:grid-cols-3 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+      
+      .md\\:grid-cols-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .lg\\:grid-cols-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
   `]
 })
 export class PlanningComponent {
+  
+  familyMembers: FamilyMember[] = [
+    {
+      name: 'Nonna',
+      role: 'Logistics & Accessibility Coordinator',
+      planningFocus: ['Hotel Research', 'Accessibility', 'Parking Solutions', 'Family Heritage'],
+      status: 'complete',
+      avatar: '👵',
+      route: '/planning/nonna'
+    },
+    {
+      name: 'Andrew',
+      role: 'Trip Organizer & Cultural Guide',
+      planningFocus: ['Itinerary Planning', 'Historical Sites', 'UNESCO Locations', 'Group Coordination'],
+      status: 'in-progress',
+      avatar: '👨‍💼',
+      route: '/planning/andrew'
+    },
+    {
+      name: 'Karen',
+      role: 'Cultural Experience Enthusiast',
+      planningFocus: ['Local Cuisine', 'Art & Culture', 'Shopping', 'Family Activities'],
+      status: 'awaiting-notes',
+      avatar: '👩',
+      route: '/planning/karen'
+    },
+    {
+      name: 'Poppop',
+      role: 'Senior Traveler & Heritage Seeker',
+      planningFocus: ['Comfort', 'Accessibility', 'Historical Interest', 'Relaxed Pacing'],
+      status: 'awaiting-notes',
+      avatar: '👴',
+      route: '/planning/poppop'
+    },
+    {
+      name: 'Jim',
+      role: 'Adventure & Photography Specialist',
+      planningFocus: ['Active Adventures', 'Photography', 'Wine Experiences', 'Unique Activities'],
+      status: 'awaiting-notes',
+      avatar: '👨‍🎨',
+      route: '/planning/jim'
+    }
+  ];
+
+  getStatusLabel(status: string): string {
+    switch(status) {
+      case 'complete': return 'Complete';
+      case 'in-progress': return 'In Progress';
+      case 'awaiting-notes': return 'Awaiting Notes';
+      default: return 'Unknown';
+    }
+  }
+
+  // Keep existing itinerary data for the lower sections
   itineraryDays: ItineraryDay[] = [
     {
       day: 'Days 1-2',
@@ -427,98 +497,7 @@ export class PlanningComponent {
           details: ['Check into hotel, light dinner, rest and adjust to time zone']
         }
       ]
-    },
-    {
-      day: 'Day 3',
-      location: 'Explore Syracuse',
-      image: 'ruins2.jpg',
-      imageAlt: 'Syracuse ancient ruins and archaeological park',
-      activities: [
-        {
-          title: 'Morning',
-          details: ['Traditional Sicilian breakfast - granita and brioche']
-        },
-        {
-          title: 'Archaeological Park',
-          details: ['Visit Roman amphitheater and Ear of Dionysius']
-        },
-        {
-          title: 'Ortigia Island',
-          details: ['Explore baroque architecture and waterfront']
-        }
-      ],
-      luxuryActivities: {
-        title: 'Luxury Options',
-        items: [
-          'Private Baron\'s Palazzo Experience with wine tasting',
-          'Sunset sailing around Ortigia island'
-        ]
-      }
-    },
-    {
-      day: 'Day 4',
-      location: 'Noto → Ragusa → Piazza Armerina → Agrigento',
-      drivingDistance: 'Total driving: ~5 hours with stops',
-      image: 'agrigento_steps.jpg',
-      imageAlt: 'Ancient stone steps in Agrigento archaeological sites',
-      activities: [
-        {
-          title: 'UNESCO Sites Tour',
-          details: [
-            'Noto baroque architecture',
-            'Ragusa Ibla medieval lanes',
-            'Villa Romana del Casale mosaics'
-          ]
-        }
-      ]
-    },
-    {
-      day: 'Day 5',
-      location: 'Valley of the Temples',
-      image: 'agrigento_ruins.jpg',
-      imageAlt: 'Valley of the Temples ancient Greek ruins',
-      activities: [
-        {
-          title: 'Archaeological Wonder',
-          details: ['8 Greek temples dating to 581 BC, guided tour recommended']
-        }
-      ]
-    },
-    {
-      day: 'Day 6-7',
-      location: 'Palermo Experience',
-      image: 'catania-opera-entrance.jpg',
-      imageAlt: 'Grand opera house entrance in Sicily',
-      activities: [
-        {
-          title: 'Norman Heritage',
-          details: ['Palatine Chapel, Teatro Massimo, Ballarò Market']
-        }
-      ]
-    },
-    {
-      day: 'Day 8-9',
-      location: 'Taormina & Mount Etna',
-      image: 'etna.jpg',
-      imageAlt: 'Mount Etna volcanic landscape and slopes',
-      activities: [
-        {
-          title: 'Ancient Theater & Volcano',
-          details: ['Greek theater with sea views, Mount Etna adventure']
-        }
-      ]
-    },
-    {
-      day: 'Day 10-11',
-      location: 'Departure',
-      image: 'seaside.jpg',
-      imageAlt: 'Sicilian coastal views for farewell',
-      activities: [
-        {
-          title: 'Return Journey',
-          details: ['Catania Airport departure to Denver']
-        }
-      ]
     }
+    // Add other days as needed...
   ];
 }
