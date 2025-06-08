@@ -12,7 +12,7 @@ interface DestinationCard {
   slug: string;
   shortDescription: string;
   region: string;
-  category: string; // Add category for one-word descriptors
+  category: string;
   heroImage: string;
   specialties: string[];
   recommendedDuration: string;
@@ -45,7 +45,7 @@ interface DestinationCard {
         <mat-card 
           *ngFor="let destination of destinations; trackBy: trackBySlug"
           class="destination-card group"
-          [routerLink]="'/destinations/' + destination.slug">
+          [routerLink]="'/' + destination.slug">
           
           <!-- Image Section with Overlays -->
           <div class="card-image-container">
@@ -153,8 +153,6 @@ interface DestinationCard {
       @apply relative overflow-hidden h-full;
       flex: 1;
     }
-
-    /* Remove old card content and actions styles */
 
     /* Line clamp utility */
     .line-clamp-3 {
@@ -459,7 +457,7 @@ export class DestinationsCardsComponent {
       shortDescription: 'Charming coastal town offering spectacular views of the Aeolian Islands and pristine beaches.',
       region: 'Northern Sicily',
       category: 'Coastal Village',
-      heroImage: 'gioiosa_marea.jpg',
+      heroImage: 'gioiosa_marea.png',
       specialties: ['Aeolian Views', 'Beaches', 'Coastal Town', 'Island Access'],
       recommendedDuration: '1-2 days',
       highlights: [
